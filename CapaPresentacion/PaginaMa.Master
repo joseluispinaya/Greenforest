@@ -60,6 +60,18 @@
                     <span>Usuarios</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="PanelProducto.aspx">
+                    <i class="fas fa-fw fa-shopping-basket"></i>
+                    <span>Productos</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="PanelProveedor.aspx">
+                    <i class="fas fa-fw fa-wallet"></i>
+                    <span>Compra</span></a>
+            </li>
+
             <!-- Nav Item - Administración Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministracion">

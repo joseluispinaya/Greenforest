@@ -67,9 +67,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\productes.css" />
     <Content Include="css\sb-admin-2.css" />
     <Content Include="css\sb-admin-2.min.css" />
     <Content Include="Imagenes\sinimagen.png" />
+    <Content Include="ImagePro\prodsinim.jpg" />
+    <Content Include="ImagePro\produ.jpg" />
     <Content Include="img\undraw_posting_photo.svg" />
     <Content Include="img\undraw_profile.svg" />
     <Content Include="img\undraw_profile_1.svg" />
@@ -77,12 +80,16 @@
     <Content Include="img\undraw_profile_3.svg" />
     <Content Include="img\undraw_rocket.svg" />
     <Content Include="Inicio.aspx" />
+    <Content Include="jsfro\PanelProducto.js" />
+    <Content Include="jsfro\PanelProveedor.js" />
     <Content Include="jsfro\PanelUsuario.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
     <Content Include="js\vistas\chart-bar-demo.js" />
     <Content Include="js\vistas\chart-pie-demo.js" />
     <Content Include="js\vistas\datatables-demo.js" />
+    <Content Include="PanelProducto.aspx" />
+    <Content Include="PanelProveedor.aspx" />
     <Content Include="PanelUsuario.aspx" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
@@ -1793,6 +1800,20 @@
     </Compile>
     <Compile Include="PaginaMa.Master.designer.cs">
       <DependentUpon>PaginaMa.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PanelProducto.aspx.cs">
+      <DependentUpon>PanelProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PanelProducto.aspx.designer.cs">
+      <DependentUpon>PanelProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PanelProveedor.aspx.cs">
+      <DependentUpon>PanelProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PanelProveedor.aspx.designer.cs">
+      <DependentUpon>PanelProveedor.aspx</DependentUpon>
     </Compile>
     <Compile Include="PanelUsuario.aspx.cs">
       <DependentUpon>PanelUsuario.aspx</DependentUpon>
