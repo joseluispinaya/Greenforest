@@ -41,10 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ECliente.cs" />
+    <Compile Include="EDetalleVenta.cs" />
     <Compile Include="EProducto.cs" />
     <Compile Include="EProveedor.cs" />
     <Compile Include="ERol.cs" />
     <Compile Include="EUsuario.cs" />
+    <Compile Include="EVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Respuesta.cs" />
   </ItemGroup>

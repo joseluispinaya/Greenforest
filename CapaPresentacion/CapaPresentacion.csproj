@@ -80,6 +80,7 @@
     <Content Include="img\undraw_profile_3.svg" />
     <Content Include="img\undraw_rocket.svg" />
     <Content Include="Inicio.aspx" />
+    <Content Include="jsfro\PanelCliente.js" />
     <Content Include="jsfro\PanelProducto.js" />
     <Content Include="jsfro\PanelProveedor.js" />
     <Content Include="jsfro\PanelUsuario.js" />
@@ -88,6 +89,7 @@
     <Content Include="js\vistas\chart-bar-demo.js" />
     <Content Include="js\vistas\chart-pie-demo.js" />
     <Content Include="js\vistas\datatables-demo.js" />
+    <Content Include="PanelCliente.aspx" />
     <Content Include="PanelProducto.aspx" />
     <Content Include="PanelProveedor.aspx" />
     <Content Include="PanelUsuario.aspx" />
@@ -1800,6 +1802,13 @@
     </Compile>
     <Compile Include="PaginaMa.Master.designer.cs">
       <DependentUpon>PaginaMa.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PanelCliente.aspx.cs">
+      <DependentUpon>PanelCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PanelCliente.aspx.designer.cs">
+      <DependentUpon>PanelCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="PanelProducto.aspx.cs">
       <DependentUpon>PanelProducto.aspx</DependentUpon>

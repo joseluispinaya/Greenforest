@@ -72,6 +72,12 @@
                     <span>Compra</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="PanelCliente.aspx">
+                    <i class="fas fa-fw fa-address-book"></i>
+                    <span>Clientes</span></a>
+            </li>
+
             <!-- Nav Item - Administración Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministracion">
