@@ -22,7 +22,6 @@
                                 <th>Id</th>
                                 <th>RUC</th>
                                 <th>Razon Social</th>
-                                <th>Direccion</th>
                                 <th>Telefono</th>
                                 <th>Correo</th>
                                 <th>Fecha Registro</th>

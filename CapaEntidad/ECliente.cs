@@ -1,4 +1,6 @@
-﻿namespace CapaEntidad
+﻿using System;
+
+namespace CapaEntidad
 {
     public class ECliente
     {
@@ -9,5 +11,7 @@
         public string Telefono { get; set; }
         public string Correo { get; set; }
         public bool Activo { get; set; }
+        public string FechaRegistro { get; set; }
+        public DateTime VFechaRegistro { get; set; }
     }
 }

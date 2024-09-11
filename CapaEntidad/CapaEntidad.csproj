@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ECliente.cs" />
     <Compile Include="EDetalleVenta.cs" />
+    <Compile Include="EncryptacionH.cs" />
     <Compile Include="EProducto.cs" />
     <Compile Include="EProveedor.cs" />
     <Compile Include="ERol.cs" />
