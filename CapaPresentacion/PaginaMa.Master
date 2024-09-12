@@ -78,6 +78,12 @@
                     <span>Clientes</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="PanelVenta.aspx">
+                    <i class="fas fa-fw fa-hand-holding-usd"></i>
+                    <span>Ventas</span></a>
+            </li>
+
             <!-- Nav Item - Administración Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdministracion">
@@ -228,7 +234,10 @@
     <script src="js/sb-admin-2.js"></script>
     <script src="vendor/toastr/toastr.min.js"></script>
     <script src="vendor/sweetalert/sweetalert.js"></script>
+
     <script src="vendor/loadingoverlay/loadingoverlay.min.js"></script>
+    <script src="vendor/loadingoverlay/loadingoverlay_zero.min.js"></script>
+    <%--<script src="vendor/loadingoverlay/loadingoverlay_progress.min.js"></script>--%>
 
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>

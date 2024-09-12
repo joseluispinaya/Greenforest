@@ -11,7 +11,7 @@ const MODELO_BASE = {
 
 $(document).ready(function () {
     
-    dtClen();
+    //dtClen();
 
 });
 function dtClen() {
@@ -135,21 +135,53 @@ function dataRegistrar() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         beforeSend: function () {
-            // Mostrar overlay de carga antes de enviar la solicitud modal-content
-            $(".modal-content").LoadingOverlay("show");
+            // Inicializa el progreso personalizado y muestra el LoadingOverlay
+            var progress2 = new LoadingOverlayProgress({
+                bar: {
+                    "background": "#dd0000",
+                    "top": "50px",
+                    "height": "30px",
+                    "border-radius": "15px"
+                },
+                text: {
+                    "color": "#aa0000",
+                    "font-family": "monospace",
+                    "top": "25px"
+                }
+            });
+
+            // Muestra el overlay con texto personalizado
+            $(".modal-content").LoadingOverlay("show", {
+                custom: progress2.Init("Encriptando...")
+            });
+
+            // Simular progreso de 0 a 100
+            var count2 = 0;
+            var iId2 = setInterval(function () {
+                if (count2 >= 100) {
+                    clearInterval(iId2);
+                    delete progress2;
+                    return;
+                }
+                count2++;
+                progress2.Update(count2);
+            }, 50);
         },
         success: function (response) {
-            $(".modal-content").LoadingOverlay("hide");
-            if (response.d.Estado) {
-                dtClen();
-                $('#modalclien').modal('hide');
-                swal("Mensaje", response.d.Valor, "success");
-            } else {
-                swal("Mensaje", response.d.Valor, "warning");
-            }
+            // Mantener el LoadingOverlay visible por un mínimo de 1 segundo
+            setTimeout(function () {
+                $(".modal-content").LoadingOverlay("hide");  // Ocultar el overlay después del éxito
+                if (response.d.Estado) {
+                    dtClen();
+                    $('#modalclien').modal('hide');
+                    swal("Mensaje", response.d.Valor, "success");
+                } else {
+                    swal("Mensaje", response.d.Valor, "warning");
+                }
+            }, 7000); // Tiempo de retraso en milisegundos (1 segundo)
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            $(".modal-content").LoadingOverlay("hide");
+            $(".modal-content").LoadingOverlay("hide");  // Ocultar el overlay después del error
             console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
         },
         complete: function () {
@@ -240,4 +272,81 @@ $('#btnGuardarCamClie').on('click', function () {
         // Rehabilitar el botón si hay campos vacíos
         $('#btnGuardarCamClie').prop('disabled', false);
     }
+})
+
+$('#btnListar').on('click', function () {
+    //loaddd
+    //loaddd
+    // Initialize Progress and show LoadingOverlay
+    var progress2 = new LoadingOverlayProgress({
+        bar: {
+            "background": "#dd0000",
+            "top": "50px",
+            "height": "30px",
+            "border-radius": "15px"
+        },
+        text: {
+            "color": "#aa0000",
+            "font-family": "monospace",
+            "top": "25px"
+        }
+    });
+    $.LoadingOverlay("show", {
+        custom: progress2.Init("Desencriptando...")  // Texto personalizado
+    });
+
+    // Simulate some other action:
+    var count2 = 0;
+    var iId2 = setInterval(function () {
+        if (count2 >= 100) {
+            clearInterval(iId2);
+            delete progress2;
+            $.LoadingOverlay("hide");
+
+            // Llamar a la función dtClen() una vez que el overlay se oculta
+            dtClen();
+            return;
+        }
+        count2++;
+        progress2.Update(count2);
+    }, 50);
+
+})
+
+$('#btnDetallee').on('click', function () {
+    //loaddd
+    // Initialize Progress and show LoadingOverlay
+    var progress2 = new LoadingOverlayProgress({
+        bar: {
+            "background": "#dd0000",
+            "top": "50px",
+            "height": "30px",
+            "border-radius": "15px"
+        },
+        text: {
+            "color": "#aa0000",
+            "font-family": "monospace",
+            "top": "25px"
+        }
+    });
+    $.LoadingOverlay("show", {
+        custom: progress2.Init("Desencriptando...")  // Texto personalizado
+    });
+
+    // Simulate some other action:
+    var count2 = 0;
+    var iId2 = setInterval(function () {
+        if (count2 >= 100) {
+            clearInterval(iId2);
+            delete progress2;
+            $.LoadingOverlay("hide");
+
+            // Llamar a la función dtClen() una vez que el overlay se oculta
+            dtClen(); 
+            return;
+        }
+        count2++;
+        progress2.Update(count2);
+    }, 50);
+
 })

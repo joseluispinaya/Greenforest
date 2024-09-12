@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PaginaMa.Master" AutoEventWireup="true" CodeBehind="PanelCliente.aspx.cs" Inherits="CapaPresentacion.PanelCliente" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="css/progres.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
 
@@ -9,7 +10,7 @@
         <button type="button" id="btnDetallee" class="btn btn-success btn-sm"><i class="fas fa-tools"></i> Informacion</button>
     </div>
 
-    <div class="card shadow mb-4">
+    <div class="card shadow mb-4" id="loaddd">
         <div class="card-header py-3 bg-second-primary">
             <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-address-book"></i> DETALLE DE CLIENTES</h6>
         </div>
