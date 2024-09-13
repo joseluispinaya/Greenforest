@@ -77,6 +77,11 @@ function formatoRes(data) {
     return contenedor;
 }
 
+$(document).on("select2:open", function () {
+    document.querySelector(".select2-search__field").focus();
+
+});
+
 // Evento para manejar la selección del cliente
 $("#cboBuscarCliente").on("select2:select", function (e) {
 
@@ -287,22 +292,22 @@ function dataGuardarVentaCliente() {
                 $("#txtIdclienteAtec").val("0");
                 $("#txtNombreClienteat").val("");
 
-                swal("Mensaje", response.d.Valor, "success");
+                //swal("Mensaje", response.d.Valor, "success");
 
-                //var url = 'frmDocVenta.aspx?id=' + response.d.Valor;
+                var url = 'frmDocVenta.aspx?id=' + response.d.Valor;
 
-                //$("#overlayc").LoadingOverlay("show");
-                //var popup = window.open(url, '', 'height=600,width=800,scrollbars=0,location=1,toolbar=0');
+                $("#overlayc").LoadingOverlay("show");
+                var popup = window.open(url, '', 'height=600,width=800,scrollbars=0,location=1,toolbar=0');
 
-                //var timer = setInterval(function () {
-                //    if (popup.closed) {
-                //        clearInterval(timer);
-                //        $("#overlayc").LoadingOverlay("hide");
-                //    }
-                //}, 500);
+                var timer = setInterval(function () {
+                    if (popup.closed) {
+                        clearInterval(timer);
+                        $("#overlayc").LoadingOverlay("hide");
+                    }
+                }, 500);
 
             } else {
-                swal("Mensaje", "ocurrio un error", "error");
+                swal("Mensaje", response.d.Valor, "error");
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -315,9 +320,16 @@ function dataGuardarVentaCliente() {
         }
     });
 }
-$('#btnTermiCaja').on('click', function () {
 
-    // Deshabilitar el botón para evitar múltiples envíos
+//$('#btnTermiCaja').on('click', function () {
+    
+//    var url = 'frmDocVenta.aspx?id=' + 1;
+//    window.open(url, '', 'height=600,width=800,scrollbars=0,location=1,toolbar=0');
+
+//})
+
+$('#btnTermiCaja').on('click', function () {
+    
     $('#btnTermiCaja').prop('disabled', true);
 
     if (ProductosParaVentaC.length < 1) {
@@ -325,9 +337,7 @@ $('#btnTermiCaja').on('click', function () {
         $('#btnTermiCaja').prop('disabled', false);
         return;
     }
-
-
-
+    
     if (parseInt($("#txtIdclienteAtec").val()) === 0) {
         swal("Mensaje", "Debe Seleccionar un Cliente para la venta", "warning");
         $('#btnTermiCaja').prop('disabled', false);

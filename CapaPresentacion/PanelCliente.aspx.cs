@@ -38,6 +38,26 @@ namespace CapaPresentacion
         }
 
         [WebMethod]
+        public static Respuesta<List<ECliente>> ObtenerEncriptado()
+        {
+            try
+            {
+                Respuesta<List<ECliente>> Lista = NCliente.GetInstance().ObtenerClientes();
+                return Lista;
+            }
+            catch (Exception ex)
+            {
+                // Maneja cualquier error inesperado
+                return new Respuesta<List<ECliente>>()
+                {
+                    Estado = false,
+                    Valor = "Error al obtener los Clientes: " + ex.Message,
+                    Data = null
+                };
+            }
+        }
+
+        [WebMethod]
         public static Respuesta<bool> GuardarPru(ECliente oCliente)
         {
             try

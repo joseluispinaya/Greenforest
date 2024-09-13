@@ -67,14 +67,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\frmReporteVen.css" />
     <Content Include="css\productes.css" />
     <Content Include="css\progres.css" />
     <Content Include="css\sb-admin-2.css" />
     <Content Include="css\sb-admin-2.min.css" />
+    <Content Include="frmDocVenta.aspx" />
     <Content Include="Imagenes\sinimagen.png" />
     <Content Include="ImagePro\logogre.jpeg" />
     <Content Include="ImagePro\prodsinim.jpg" />
     <Content Include="ImagePro\produ.jpg" />
+    <Content Include="ImagePro\reportIm.png" />
     <Content Include="img\undraw_posting_photo.svg" />
     <Content Include="img\undraw_profile.svg" />
     <Content Include="img\undraw_profile_1.svg" />
@@ -82,6 +85,7 @@
     <Content Include="img\undraw_profile_3.svg" />
     <Content Include="img\undraw_rocket.svg" />
     <Content Include="Inicio.aspx" />
+    <Content Include="jsfro\frmDocVenta.js" />
     <Content Include="jsfro\PanelCliente.js" />
     <Content Include="jsfro\PanelProducto.js" />
     <Content Include="jsfro\PanelProveedor.js" />
@@ -1795,6 +1799,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmDocVenta.aspx.cs">
+      <DependentUpon>frmDocVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDocVenta.aspx.designer.cs">
+      <DependentUpon>frmDocVenta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

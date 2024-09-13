@@ -56,9 +56,9 @@ namespace CapaPresentacion
         {
             try
             {
-                var llego = xml;
-                //int respuesta = NVenta.getInstance().RegistrarVentaIdclie(xml);
-                int respuesta = 14;
+                //var llego = xml;
+                int respuesta = NVenta.GetInstance().RegistrarVentaIdclie(xml);
+                //int respuesta = 14;
                 if (respuesta != 0)
                 {
                     return new Respuesta<int>() { Estado = true, Valor = respuesta.ToString() };
@@ -71,6 +71,28 @@ namespace CapaPresentacion
             catch (Exception ex)
             {
                 return new Respuesta<int>() { Estado = false, Valor = $"Error al registrar la venta: {ex.Message}" };
+            }
+        }
+
+        [WebMethod]
+        public static Respuesta<EVenta> DetalleVenta(int IdVenta)
+        {
+            try
+            {
+                EVenta oVenta = NVenta.GetInstance().ObtenerDetalleVenta(IdVenta);
+                if (oVenta != null)
+                {
+                    return new Respuesta<EVenta>() { Estado = true, Data = oVenta };
+                }
+                else
+                {
+                    return new Respuesta<EVenta>() { Estado = false, Data = null, Valor = "No se pudo encontrar la reserva" };
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                return new Respuesta<EVenta>() { Estado = false, Data = null, Valor = ex.Message };
             }
         }
     }

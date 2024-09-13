@@ -6,7 +6,8 @@
 
     <div class="row justify-content-center align-items-center mb-2">
         <button type="button" id="btnAdd" class="btn btn-danger btn-sm mr-3"><i class="fas fa-user-plus"></i> Agregar Nuevo</button>
-        <button type="button" id="btnListar" class="btn btn-primary btn-sm mr-3"><i class="fas fa-tasks"></i> Lista de Clientes</button>
+        <button type="button" id="btnListar" class="btn btn-primary btn-sm mr-3"><i class="fas fa-tasks"></i> Lista Desencriptada</button>
+        <button type="button" id="btnListarEncrip" class="btn btn-primary btn-sm mr-3"><i class="fas fa-tasks"></i> Lista Encriptada</button>
         <button type="button" id="btnDetallee" class="btn btn-success btn-sm"><i class="fas fa-tools"></i> Informacion</button>
     </div>
 

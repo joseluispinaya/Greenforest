@@ -76,6 +76,67 @@ function dtClen() {
     });
 }
 
+
+function dtClienteEncriptado() {
+    if ($.fn.DataTable.isDataTable("#tbCliente")) {
+        $("#tbCliente").DataTable().destroy();
+        $('#tbCliente tbody').empty();
+    }
+
+    table = $("#tbCliente").DataTable({
+        responsive: true,
+        "ajax": {
+            "url": 'PanelCliente.aspx/ObtenerEncriptado',
+            "type": "POST", // Cambiado a POST
+            "contentType": "application/json; charset=utf-8",
+            "dataType": "json",
+            "data": function (d) {
+                return JSON.stringify(d);
+            },
+            "dataSrc": function (json) {
+                //console.log("Response from server:", json.d.objeto);
+                if (json.d.Estado) {
+                    return json.d.Data; // Asegúrate de que esto apunta al array de datos
+                } else {
+                    return [];
+                }
+            }
+        },
+        "columns": [
+            { "data": "IdCliente", "visible": false, "searchable": false },
+            { "data": "Ruc" },
+            { "data": "RazonSocial" },
+            { "data": "Telefono" },
+            { "data": "Correo" },
+            { "data": "FechaRegistro" },
+            {
+                "defaultContent": '<button class="btn btn-primary btn-editar btn-sm"><i class="fas fa-pencil-alt"></i></button>',
+                "orderable": false,
+                "searchable": false,
+                "width": "50px"
+            }
+        ],
+        "order": [[0, "desc"]],
+        "dom": "Bfrtip",
+        "buttons": [
+            {
+                text: 'Exportar Excel',
+                extend: 'excelHtml5',
+                title: '',
+                filename: 'Informe',
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5] // Ajusta según las columnas que desees exportar
+                }
+            },
+            'pageLength'
+        ],
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+        }
+    });
+}
+
+
 function mostrarModal(modelo, cboEstadoDeshabilitado = true) {
     // Verificar si modelo es null
     modelo = modelo ?? MODELO_BASE;
@@ -172,7 +233,7 @@ function dataRegistrar() {
             setTimeout(function () {
                 $(".modal-content").LoadingOverlay("hide");  // Ocultar el overlay después del éxito
                 if (response.d.Estado) {
-                    dtClen();
+                    //dtClen();
                     $('#modalclien').modal('hide');
                     swal("Mensaje", response.d.Valor, "success");
                 } else {
@@ -217,7 +278,7 @@ function dataActualizar() {
         success: function (response) {
             $(".modal-content").LoadingOverlay("hide");
             if (response.d.Estado) {
-                dtClen();
+                //dtClen();
                 $('#modalclien').modal('hide');
                 swal("Mensaje", response.d.Valor, "success");
             } else {
@@ -268,7 +329,7 @@ $('#btnGuardarCamClie').on('click', function () {
         dataRegistrar();
     } else {
         //dataActualizar();
-        swal("Mensaje", "Error al registrar", "warning");
+        swal("Mensaje", "Falta Implementar", "warning");
         // Rehabilitar el botón si hay campos vacíos
         $('#btnGuardarCamClie').prop('disabled', false);
     }
@@ -313,9 +374,7 @@ $('#btnListar').on('click', function () {
 
 })
 
-$('#btnDetallee').on('click', function () {
-    //loaddd
-    // Initialize Progress and show LoadingOverlay
+$('#btnListarEncrip').on('click', function () {
     var progress2 = new LoadingOverlayProgress({
         bar: {
             "background": "#dd0000",
@@ -330,10 +389,9 @@ $('#btnDetallee').on('click', function () {
         }
     });
     $.LoadingOverlay("show", {
-        custom: progress2.Init("Desencriptando...")  // Texto personalizado
+        custom: progress2.Init("Encriptando...")
     });
 
-    // Simulate some other action:
     var count2 = 0;
     var iId2 = setInterval(function () {
         if (count2 >= 100) {
@@ -341,12 +399,48 @@ $('#btnDetallee').on('click', function () {
             delete progress2;
             $.LoadingOverlay("hide");
 
-            // Llamar a la función dtClen() una vez que el overlay se oculta
-            dtClen(); 
+            dtClienteEncriptado();
             return;
         }
         count2++;
         progress2.Update(count2);
     }, 50);
+
+})
+
+$('#btnDetallee').on('click', function () {
+
+    swal("Mensaje", "Falta Implementar Este boton", "warning");
+
+    //var progress2 = new LoadingOverlayProgress({
+    //    bar: {
+    //        "background": "#dd0000",
+    //        "top": "50px",
+    //        "height": "30px",
+    //        "border-radius": "15px"
+    //    },
+    //    text: {
+    //        "color": "#aa0000",
+    //        "font-family": "monospace",
+    //        "top": "25px"
+    //    }
+    //});
+    //$.LoadingOverlay("show", {
+    //    custom: progress2.Init("Desencriptando...")
+    //});
+    
+    //var count2 = 0;
+    //var iId2 = setInterval(function () {
+    //    if (count2 >= 100) {
+    //        clearInterval(iId2);
+    //        delete progress2;
+    //        $.LoadingOverlay("hide");
+            
+    //        dtClen(); 
+    //        return;
+    //    }
+    //    count2++;
+    //    progress2.Update(count2);
+    //}, 50);
 
 })

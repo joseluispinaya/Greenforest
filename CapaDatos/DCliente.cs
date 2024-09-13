@@ -89,7 +89,7 @@ namespace CapaDatos
                                 rptLista.Add(new ECliente()
                                 {
                                     IdCliente = Convert.ToInt32(dr["IdCliente"]),
-                                    Ruc = dr["Ruc"].ToString(),
+                                    Ruc = dr["RUC"].ToString(),
                                     RazonSocial = dr["RazonSocial"].ToString(),
                                     Direccion = dr["Direccion"].ToString(),
                                     Telefono = dr["Telefono"].ToString(),
@@ -142,7 +142,7 @@ namespace CapaDatos
                                 {
                                     IdCliente = Convert.ToInt32(dr["IdCliente"]),
                                     // Aplicamos el método Decrypt para desencriptar los campos encriptados
-                                    Ruc = EncryptacionH.Decrypt(dr["Ruc"].ToString()),
+                                    Ruc = EncryptacionH.Decrypt(dr["RUC"].ToString()),
                                     RazonSocial = EncryptacionH.Decrypt(dr["RazonSocial"].ToString()),
                                     Direccion = EncryptacionH.Decrypt(dr["Direccion"].ToString()),
                                     Telefono = EncryptacionH.Decrypt(dr["Telefono"].ToString()),
