@@ -61,6 +61,8 @@ namespace CapaPresentacion
                 //int respuesta = 14;
                 if (respuesta != 0)
                 {
+                    bool enviocorr = EnviarCorreo(respuesta);
+
                     return new Respuesta<int>() { Estado = true, Valor = respuesta.ToString() };
                 }
                 else
@@ -71,6 +73,17 @@ namespace CapaPresentacion
             catch (Exception ex)
             {
                 return new Respuesta<int>() { Estado = false, Valor = $"Error al registrar la venta: {ex.Message}" };
+            }
+        }
+        private static bool EnviarCorreo(int Id)
+        {
+            try
+            {
+                return Utilidadesj.GetInstance().EnviarDetalleVenta(Id);
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 

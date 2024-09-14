@@ -67,11 +67,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\defaulstyle.css" />
     <Content Include="css\frmReporteVen.css" />
+    <Content Include="css\imgper\fondom.png" />
+    <Content Include="css\imgper\loginpor.jpg" />
     <Content Include="css\productes.css" />
     <Content Include="css\progres.css" />
     <Content Include="css\sb-admin-2.css" />
     <Content Include="css\sb-admin-2.min.css" />
+    <Content Include="Default.aspx" />
     <Content Include="frmDocVenta.aspx" />
     <Content Include="Imagenes\sinimagen.png" />
     <Content Include="ImagePro\logogre.jpeg" />
@@ -86,16 +90,20 @@
     <Content Include="img\undraw_rocket.svg" />
     <Content Include="Inicio.aspx" />
     <Content Include="jsfro\frmDocVenta.js" />
+    <Content Include="jsfro\Login.js" />
+    <Content Include="jsfro\MasterPa.js" />
     <Content Include="jsfro\PanelCliente.js" />
     <Content Include="jsfro\PanelProducto.js" />
     <Content Include="jsfro\PanelProveedor.js" />
     <Content Include="jsfro\PanelUsuario.js" />
     <Content Include="jsfro\PanelVenta.js" />
+    <Content Include="jsfro\Redire.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
     <Content Include="js\vistas\chart-bar-demo.js" />
     <Content Include="js\vistas\chart-pie-demo.js" />
     <Content Include="js\vistas\datatables-demo.js" />
+    <Content Include="Login.aspx" />
     <Content Include="PanelCliente.aspx" />
     <Content Include="PanelProducto.aspx" />
     <Content Include="PanelProveedor.aspx" />
@@ -1799,6 +1807,14 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuracion.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmDocVenta.aspx.cs">
       <DependentUpon>frmDocVenta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1812,6 +1828,13 @@
     </Compile>
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaginaMa.Master.cs">
       <DependentUpon>PaginaMa.Master</DependentUpon>
