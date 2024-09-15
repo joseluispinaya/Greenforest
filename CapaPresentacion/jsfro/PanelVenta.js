@@ -181,6 +181,11 @@ $("#cboBuscarProductov").on("select2:select", function (e) {
             return false;
         }
 
+        if (parseInt(valor) <= 0) {
+            toastr.warning("", "La cantidad debe ser mayor a cero");
+            return false;
+        }
+
         let productod = {
             IdProducto: data.id,
             NombreProducto: data.text,

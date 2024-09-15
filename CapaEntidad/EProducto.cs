@@ -21,6 +21,6 @@ namespace CapaEntidad
             ? $"/ImagePro/prodsinim.jpg"
             : Imagen;
 
-        public string TotalCadena => $"{PrecioUnidadVenta:F2} /Bs";
+        public string TotalCadena => $"{PrecioUnidadVenta:F2} /USD";
     }
 }

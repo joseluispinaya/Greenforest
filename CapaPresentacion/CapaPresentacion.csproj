@@ -95,6 +95,7 @@
     <Content Include="jsfro\PanelCliente.js" />
     <Content Include="jsfro\PanelProducto.js" />
     <Content Include="jsfro\PanelProveedor.js" />
+    <Content Include="jsfro\PanelReportes.js" />
     <Content Include="jsfro\PanelUsuario.js" />
     <Content Include="jsfro\PanelVenta.js" />
     <Content Include="jsfro\Redire.js" />
@@ -107,6 +108,7 @@
     <Content Include="PanelCliente.aspx" />
     <Content Include="PanelProducto.aspx" />
     <Content Include="PanelProveedor.aspx" />
+    <Content Include="PanelReportes.aspx" />
     <Content Include="PanelUsuario.aspx" />
     <Content Include="PanelVenta.aspx" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
@@ -1864,6 +1866,13 @@
     <Compile Include="PanelProveedor.aspx.designer.cs">
       <DependentUpon>PanelProveedor.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PanelReportes.aspx.cs">
+      <DependentUpon>PanelReportes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PanelReportes.aspx.designer.cs">
+      <DependentUpon>PanelReportes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PanelUsuario.aspx.cs">
       <DependentUpon>PanelUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2073,7 +2082,9 @@
       <Name>CapaNegocio</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Start\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

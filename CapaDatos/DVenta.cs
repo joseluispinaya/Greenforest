@@ -188,5 +188,48 @@ namespace CapaDatos
 
             return rptListaUsuario;
         }
+
+        public List<VentaRepoFecha> ObtenerVentaRepoFechas(DateTime FechaInicio, DateTime FechaFin)
+        {
+            List<VentaRepoFecha> rptListaUsuario = new List<VentaRepoFecha>();
+
+            try
+            {
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand comando = new SqlCommand("usp_VentaReporteFechas", con))
+                    {
+                        comando.Parameters.AddWithValue("@FechaInicio", FechaInicio);
+                        comando.Parameters.AddWithValue("@FechaFin", FechaFin);
+                        comando.CommandType = CommandType.StoredProcedure;
+                        con.Open();
+
+                        using (SqlDataReader dr = comando.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                rptListaUsuario.Add(new VentaRepoFecha()
+                                {
+                                    IdVenta = Convert.ToInt32(dr["IdVenta"]),
+                                    Codigo = dr["Codigo"].ToString(),
+                                    FechaRegistro = Convert.ToDateTime(dr["FechaRegistro"].ToString()).ToString("dd/MM/yyyy"),
+                                    VFechaRegistro = Convert.ToDateTime(dr["FechaRegistro"].ToString()),
+                                    Cliente = EncryptacionH.Decrypt(dr["Razonsocial"].ToString()),
+                                    Producto = dr["PRODUCTO"].ToString(),
+                                    TotalCosto = float.Parse(dr["totalpago"].ToString())
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //throw ex;
+                throw new Exception("Error al obtener las reporte ventas", ex);
+            }
+
+            return rptListaUsuario;
+        }
     }
 }

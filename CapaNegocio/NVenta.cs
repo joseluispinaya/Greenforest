@@ -37,5 +37,10 @@ namespace CapaNegocio
         {
             return DVenta.GetInstance().ObtenerListaVentaa();
         }
+
+        public List<VentaRepoFecha> ObtenerVentaRepoFechas(DateTime FechaInicio, DateTime FechaFin)
+        {
+            return DVenta.GetInstance().ObtenerVentaRepoFechas(FechaInicio, FechaFin);
+        }
     }
 }
