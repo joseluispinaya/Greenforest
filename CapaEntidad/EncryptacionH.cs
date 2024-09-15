@@ -11,7 +11,7 @@ namespace CapaEntidad
     public class EncryptacionH
     {
         private static readonly string Key = "ABCDEFG566952Zabcdef8545785opqrs";
-
+        //esta es una prueba
         public static string Encrypt(string text)
         {
             byte[] keyBytes = Encoding.UTF8.GetBytes(Key);
