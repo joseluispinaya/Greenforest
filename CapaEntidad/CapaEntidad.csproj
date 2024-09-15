@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClienteDTO.cs" />
     <Compile Include="ECliente.cs" />
     <Compile Include="EDetalleVenta.cs" />
     <Compile Include="EncryptacionH.cs" />

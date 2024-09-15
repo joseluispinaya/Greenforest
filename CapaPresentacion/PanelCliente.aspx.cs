@@ -62,6 +62,11 @@ namespace CapaPresentacion
         {
             try
             {
+                if (!ValidarRuc(oCliente.Ruc))
+                {
+                    return new Respuesta<bool> { Estado = false, Valor = "Ya existe el RUC" };
+                }
+
                 ECliente obj = new ECliente
                 {
                     Ruc = EncryptacionH.Encrypt(oCliente.Ruc),
@@ -91,6 +96,28 @@ namespace CapaPresentacion
                 return new Respuesta<bool> { Estado = false, Valor = "Ocurrió un error: " + ex.Message };
             }
         }
+
+        private static bool ValidarRuc(string ruc)
+        {
+            try
+            {
+                Respuesta<List<ECliente>> Lista = NCliente.GetInstance().ObtenerClientesEn();
+                var listafi = Lista.Data;
+                var item = listafi.FirstOrDefault(x => x.Ruc == ruc);
+
+                if (item != null)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         [WebMethod]
         public static Respuesta<bool> Guardar(ECliente oCliente)
         {
