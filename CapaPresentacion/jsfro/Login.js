@@ -1,4 +1,25 @@
 ﻿
+
+//$(document).ready(function () {
+
+//    obtenerIp();
+
+//});
+
+
+
+//function obtenerIp() {
+
+//    fetch('https://api.ipify.org?format=json')
+//        .then(response => response.json())
+//        .then(data => {
+//            console.log("Tu IP pública es:", data.ip);
+//        })
+//        .catch(error => {
+//            console.error("Error al obtener la IP:", error);
+//        });
+//}
+
 $('#ingrsarLo').on('click', function () {
 
     //VALIDACIONES DE USUARIO

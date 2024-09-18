@@ -37,6 +37,7 @@ namespace CapaPresentacion
                 //throw;
             }
         }
+        //sin usar por el momento
         [WebMethod]
         public static Respuesta<EUsuario> ObtenerDatosOri()
         {
@@ -59,7 +60,7 @@ namespace CapaPresentacion
             }
         }
 
-        //sin usar por el momento
+        
         [WebMethod]
         public static Respuesta<string> ObtenerToken(int IdUsu)
         {
