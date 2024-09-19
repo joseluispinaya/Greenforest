@@ -70,6 +70,121 @@ namespace CapaPresentacion
             return rutaa;
         }
 
+        public bool Recuperacion(string toEmail, string clave)
+        {
+            try
+            {
+                var from = "joseluisdelta1@gmail.com";
+                var name = "GREEN FOREST";
+                var smtps = "smtp.gmail.com";
+                var port = 587;
+                var password = "kgvkzaagdkvfutiy";
+                var correo = new MailMessage
+                {
+                    From = new MailAddress(from, name)
+                };
+                correo.To.Add(toEmail);
+                correo.Subject = "Recuperacion de Clave";
+
+
+                string cuerposss = @"
+                    <html>
+                    <head>
+                        <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                                background-color: #f4f4f4;
+                                margin: 0;
+                                padding: 0;
+                                text-align: center;
+                            }
+                            .container {
+                                width: 100%;
+                                max-width: 600px;
+                                margin: 0 auto;
+                                background-color: #ffffff;
+                                padding: 20px;
+                                border-radius: 8px;
+                                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                            }
+                            .header {
+                                background-color: #e0e0e0;
+                                padding: 10px;
+                            }
+                            .header img {
+                                max-width: 100%;
+                                height: auto;
+                            }
+                            .content {
+                                margin-top: 20px;
+                                text-align: left;
+                            }
+                            .button-container {
+                                margin-top: 20px;
+                            }
+                            .button {
+                                display: inline-block;
+                                padding: 10px 20px;
+                                font-size: 16px;
+                                color: white;
+                                background-color: #82b74b;
+                                text-decoration: none;
+                                border-radius: 5px;
+                            }
+                            .button:hover {
+                                background-color: #6fa83d;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class='container'>
+                            <div class='header'>
+                                <img src='[URL_IMAGEN]' alt='Logo'>
+                            </div>
+                            <div class='content'>
+                                <h2>Bienvenido a Green Forest</h2>
+                                <p>Sus credenciales de acceso son:</p>
+                                <p><strong>Usuario:</strong> [USUARIO]</p>
+                                <p><strong>Contraseña:</strong> [CONTRASEÑA]</p>
+                                <p>Por motivos de seguridad, le recomendamos cambiar su contraseña.</p>
+                            </div>
+                            <div class='button-container'>
+                                <a href='[URL_PAGINA]' class='button'>Ir a Página</a>
+                            </div>
+                        </div>
+                    </body>
+                    </html>";
+
+                cuerposss = cuerposss.Replace("[URL_IMAGEN]", "https://i.imgur.com/BecNCTk.png")
+                     .Replace("[USUARIO]", toEmail)
+                     .Replace("[CONTRASEÑA]", clave)
+                     .Replace("[URL_PAGINA]", "https://www.facebook.com/joseluis.pinayabalderrama");
+
+                correo.Body = cuerposss;
+                correo.IsBodyHtml = true;
+                correo.Priority = MailPriority.Normal;
+
+                SmtpClient smtp = new SmtpClient
+                {
+                    Host = smtps,
+                    Port = port,
+                    Credentials = new NetworkCredential(from, password),
+                    EnableSsl = true
+                };
+
+                smtp.Send(correo);
+                return true;
+            }
+            catch (SmtpException)
+            {
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public bool EnviarDetalleVenta(int IdVenta)
         {
             try

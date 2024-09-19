@@ -66,7 +66,7 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="#">¿Olvidó su contraseña?</a>
+                                        <a class="small" href="#" id="btncorreo">¿Olvidó su contraseña?</a>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +80,38 @@
 
     </div>
 
+    <div class="modal fade" id="modalcorr" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 id="ti">Recuperrar Contraseña</h6>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-row">
+                                <div class="form-group col-sm-12">
+                                    <label for="txtcxorreo">CORREO</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtcxorreo">
+                                </div>
+                            </div>
+                            <div class="row justify-content-center align-items-center mb-2">
+                                <button type="button" id="btnEnviarC" class="btn btn-primary btn-sm mr-3"><i class="fas fa-user-plus"></i>Enviar</button>
+                                <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/toastr/toastr.min.js"></script>
     <script src="vendor/sweetalert/sweetalert.js"></script>
     <script src="vendor/loadingoverlay/loadingoverlay.min.js"></script>

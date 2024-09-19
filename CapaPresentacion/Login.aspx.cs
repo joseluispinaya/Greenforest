@@ -75,5 +75,50 @@ namespace CapaPresentacion
                 //throw;
             }
         }
+
+        [WebMethod]
+        public static Respuesta<bool> RecuperacionCl(string correo)
+        {
+            try
+            {
+                List<EUsuario> Lista = NUsuario.GetInstance().ObtenerUsuarios();
+                var item = Lista.FirstOrDefault(x => x.Correo == correo);
+                if (item == null)
+                {
+                    return new Respuesta<bool>()
+                    {
+                        Estado = false,
+                        Valor = "El correo ingresado no existe"
+                    };
+                }
+
+                bool enviocorr = EnvioRecuperacion(item.Correo, item.Clave);
+
+                return new Respuesta<bool>()
+                {
+                    Estado = enviocorr,
+                    Valor = enviocorr ? "Se envio un Correo de recuperacion" : "Ocurrio un error en el envio intente mas tarde"
+                };
+            }
+            catch (Exception)
+            {
+                return new Respuesta<bool>()
+                {
+                    Estado = false,
+                    Valor = "Ocurrió un error intente mas tarde"
+                };
+            }
+        }
+        private static bool EnvioRecuperacion(string correo, string clave)
+        {
+            try
+            {
+                return Utilidadesj.GetInstance().Recuperacion(correo, clave);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

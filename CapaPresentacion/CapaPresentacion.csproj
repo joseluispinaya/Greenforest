@@ -122,6 +122,7 @@
     <Content Include="jsfro\Login.js" />
     <Content Include="jsfro\MasterPa.js" />
     <Content Include="jsfro\PanelCliente.js" />
+    <Content Include="jsfro\PanelPerfil.js" />
     <Content Include="jsfro\PanelProducto.js" />
     <Content Include="jsfro\PanelProveedor.js" />
     <Content Include="jsfro\PanelReportes.js" />
@@ -135,6 +136,7 @@
     <Content Include="js\vistas\datatables-demo.js" />
     <Content Include="Login.aspx" />
     <Content Include="PanelCliente.aspx" />
+    <Content Include="PanelPerfil.aspx" />
     <Content Include="PanelProducto.aspx" />
     <Content Include="PanelProveedor.aspx" />
     <Content Include="PanelReportes.aspx" />
@@ -1885,6 +1887,13 @@
     </Compile>
     <Compile Include="PanelCliente.aspx.designer.cs">
       <DependentUpon>PanelCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PanelPerfil.aspx.cs">
+      <DependentUpon>PanelPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PanelPerfil.aspx.designer.cs">
+      <DependentUpon>PanelPerfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="PanelProducto.aspx.cs">
       <DependentUpon>PanelProducto.aspx</DependentUpon>
