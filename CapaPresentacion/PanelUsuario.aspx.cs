@@ -100,13 +100,14 @@ namespace CapaPresentacion
                     //string folder = "/Imagenes/";
                     //imageUrl = Utilidadesj.GetInstance().UploadPhotoA(stream, folder);
                 }
-
+                //Ruc = EncryptacionH.Encrypt(oUsuario.Clave),
                 EUsuario obj = new EUsuario
                 {
                     Nombres = oUsuario.Nombres,
                     Apellidos = oUsuario.Apellidos,
                     Correo = oUsuario.Correo,
-                    Clave = oUsuario.Clave,
+                    //Clave = oUsuario.Clave,
+                    Clave = EncryptacionH.Encrypt(oUsuario.Clave),
                     Foto = imageUrl,
                     IdRol = oUsuario.IdRol,
                     TokenSesion = Guid.NewGuid().ToString()

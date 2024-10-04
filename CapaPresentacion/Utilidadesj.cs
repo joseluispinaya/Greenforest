@@ -155,7 +155,7 @@ namespace CapaPresentacion
                     </body>
                     </html>";
 
-                cuerposss = cuerposss.Replace("[URL_IMAGEN]", "https://i.imgur.com/BecNCTk.png")
+                cuerposss = cuerposss.Replace("[URL_IMAGEN]", "https://asociacion-001-site1.ktempurl.com/imagenes/ortiimss.png")
                      .Replace("[USUARIO]", toEmail)
                      .Replace("[CONTRASEÑA]", clave)
                      .Replace("[URL_PAGINA]", "https://www.facebook.com/joseluis.pinayabalderrama");
@@ -291,7 +291,7 @@ namespace CapaPresentacion
                         <table style='width: 100%'>
                             <tr>
                                 <td>
-                                    <img src='https://asociacion-001-site1.ktempurl.com/Imagenes/sinimagen.png' style='width: 120px; height: 120px' />
+                                    <img src='https://asociacion-001-site1.ktempurl.com/imagenes/ortizim.png' style='width: 120px; height: 120px' />
                                 </td>
                                 <td style='text-align: right'>
                                     <table style='margin-right: 0; margin-left: auto'>

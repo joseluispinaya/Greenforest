@@ -53,14 +53,14 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Inicio</span></a>
             </li>
-
-            <li class="nav-item">
+            <!-- No cajero y otro -->
+            <li class="nav-item adminic">
                 <a class="nav-link" href="PanelUsuario.aspx">
                     <i class="fas fa-fw fa-user-shield"></i>
                     <span>Usuarios</span></a>
             </li>
-
-            <li class="nav-item">
+            <!-- No cajero y otro -->
+            <li class="nav-item adminic">
                 <a class="nav-link" href="PanelProducto.aspx">
                     <i class="fas fa-fw fa-shopping-basket"></i>
                     <span>Productos</span></a>
@@ -72,7 +72,8 @@
                     <span>Compra</span></a>
             </li>
 
-            <li class="nav-item">
+            <!-- No cajero y otro -->
+            <li class="nav-item adminic">
                 <a class="nav-link" href="PanelCliente.aspx">
                     <i class="fas fa-fw fa-address-book"></i>
                     <span>Clientes</span></a>
@@ -87,7 +88,6 @@
                 <div id="collapseVenta" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="PanelVenta.aspx">Nueva Venta</a>
-                        <a class="collapse-item" href="#">Historial Venta</a>
                     </div>
                 </div>
             </li>

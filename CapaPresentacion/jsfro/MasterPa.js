@@ -41,12 +41,31 @@ async function obtenerDetalleUsuarioR(idUsu) {
             if (tokenSession !== response.d.Valor) {
                 await cerrarSesion(); // Llama a la función para cerrar sesión
             } else {
-                // Actualiza la información del usuario en la interfaz
-                var usuario = JSON.parse(sessionStorage.getItem('usuarioL'));
-                $("#nomUserg").text(usuario.Apellidos);
-                $("#imgUsumast").attr("src", usuario.ImageFull);
-                //$("#nomUserg").text(response.d.Data.Apellidos);
-                //$("#imgUsumast").attr("src", response.d.Data.ImageFull);
+                // Actualiza la información del usuario en la interfaz nuevo
+                const usuarioL = sessionStorage.getItem('usuarioL');
+
+                if (usuarioL) {
+                    var usuario = JSON.parse(usuarioL);
+                    $("#nomUserg").text(usuario.Apellidos);
+                    $("#imgUsumast").attr("src", usuario.ImageFull);
+                    if (usuario.IdRol === 1) {
+                        $(".adminic").show();
+                    } else {
+                        $(".adminic").hide();
+                    }
+                } else {
+                    console.error('No se encontró información del usuario en sessionStorage.');
+                    window.location.href = 'Login.aspx'; // Redirigir si no hay usuario válido
+                }
+                //var usuario = JSON.parse(sessionStorage.getItem('usuarioL'));
+                //$("#nomUserg").text(usuario.Apellidos);
+                //$("#imgUsumast").attr("src", usuario.ImageFull);
+
+                //if (usuario.IdRol === 1) {
+                //    $(".adminic").show();
+                //} else {
+                //    $(".adminic").hide();
+                //}
             }
         } else {
             window.location.href = 'Login.aspx';

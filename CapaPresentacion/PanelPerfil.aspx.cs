@@ -88,5 +88,40 @@ namespace CapaPresentacion
                 return new Respuesta<bool> { Estado = false, Valor = "Ocurrió un error: " + ex.Message };
             }
         }
+
+
+        [WebMethod]
+        public static Respuesta<bool> CambiarClave(int IdUsuario, string claveActual, string claveNueva)
+        {
+            try
+            {
+                if (IdUsuario <= 0)
+                {
+                    return new Respuesta<bool>() { Estado = false, Valor = "No se encro al Usuario Intente mas tarde" };
+                }
+                var listaUsuarios = NUsuario.GetInstance().ObtenerUsuarios();
+                var item = listaUsuarios.FirstOrDefault(x => x.IdUsuario == IdUsuario);
+
+                if (item == null)
+                {
+                    return new Respuesta<bool>() { Estado = false, Valor = "Usuario no encontrado" };
+                }
+                if (item.Clave != claveActual)
+                {
+                    return new Respuesta<bool>() { Estado = false, Valor = "Contraseña Actual Incorrecta" };
+                }
+                item.Clave = claveNueva;
+                bool resultado = NUsuario.GetInstance().ActualizarUsuario(item);
+                return new Respuesta<bool>
+                {
+                    Estado = resultado,
+                    Valor = resultado ? "Contraseña Actualizada Correctamente" : "Error al actualizar la Contraseña, intente mas tarde"
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Respuesta<bool> { Estado = false, Valor = "Ocurrió un error: " + ex.Message };
+            }
+        }
     }
 }
