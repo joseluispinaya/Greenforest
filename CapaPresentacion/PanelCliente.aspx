@@ -83,14 +83,6 @@
                                 <button type="button" id="btnGuardarCamClie" class="btn btn-primary btn-sm mr-3"><i class="fas fa-user-plus"></i> Guardar Cambios</button>
                                 <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancel</button>
                             </div>
-                            <%--<div class="form-row">
-                                <div class="form-group col-sm-6 text-center">
-                                    <button type="button" id="btnGuardarCamClie" class="btn btn-primary btn-sm"><i class="fas fa-user-plus"></i> Guardar Cambios</button>
-                                </div>
-                                <div class="form-group col-sm-6 text-center">
-                                    <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancel</button>
-                                </div>
-                            </div>--%>
                         </div>
 
                     </div>
@@ -98,6 +90,35 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modalClaveS" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6><i class="fas fa-key"></i> Seguridad de Acceso</h6>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row align-items-end">
+                                
+                    <div class="form-group col-sm-6">
+                        <label for="txtClaveActualC">Ingrese Clave</label>
+                        <input type="password" class="form-control form-control-sm" id="txtClaveActualC" name="Clave Actual">
+                    </div>
+                    
+                    <div class="form-group col-sm-3">
+                       <button type="button" class="btn btn-primary btn-block btn-sm" id="btnValidarC"><i class="fas fa-key"></i> Validar</button>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
     <script src="jsfro/PanelCliente.js" type="text/javascript"></script>

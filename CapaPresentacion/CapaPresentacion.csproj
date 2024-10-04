@@ -125,6 +125,7 @@
     <Content Include="jsfro\PanelPerfil.js" />
     <Content Include="jsfro\PanelProducto.js" />
     <Content Include="jsfro\PanelProveedor.js" />
+    <Content Include="jsfro\PanelRepoProducto.js" />
     <Content Include="jsfro\PanelReportes.js" />
     <Content Include="jsfro\PanelUsuario.js" />
     <Content Include="jsfro\PanelVenta.js" />
@@ -139,6 +140,7 @@
     <Content Include="PanelPerfil.aspx" />
     <Content Include="PanelProducto.aspx" />
     <Content Include="PanelProveedor.aspx" />
+    <Content Include="PanelRepoProducto.aspx" />
     <Content Include="PanelReportes.aspx" />
     <Content Include="PanelUsuario.aspx" />
     <Content Include="PanelVenta.aspx" />
@@ -1908,6 +1910,13 @@
     </Compile>
     <Compile Include="PanelProveedor.aspx.designer.cs">
       <DependentUpon>PanelProveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PanelRepoProducto.aspx.cs">
+      <DependentUpon>PanelRepoProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PanelRepoProducto.aspx.designer.cs">
+      <DependentUpon>PanelRepoProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="PanelReportes.aspx.cs">
       <DependentUpon>PanelReportes.aspx</DependentUpon>

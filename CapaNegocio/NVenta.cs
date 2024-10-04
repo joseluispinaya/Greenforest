@@ -42,5 +42,15 @@ namespace CapaNegocio
         {
             return DVenta.GetInstance().ObtenerVentaRepoFechas(FechaInicio, FechaFin);
         }
+
+        public List<EReporteVentaProd> ReportePorProductoN()
+        {
+            return DVenta.GetInstance().ReportePorProductoN();
+        }
+
+        public List<EReporteVentaProd> ReportePorProductoFechas(DateTime FechaInicio, DateTime FechaFin)
+        {
+            return DVenta.GetInstance().ReportePorProductoFechas(FechaInicio, FechaFin);
+        }
     }
 }

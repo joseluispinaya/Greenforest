@@ -91,7 +91,7 @@ namespace CapaPresentacion
 
 
         [WebMethod]
-        public static Respuesta<bool> CambiarClave(int IdUsuario, string claveActual, string claveNueva)
+        public static Respuesta<bool> CambiarClaveOri(int IdUsuario, string claveActual, string claveNueva)
         {
             try
             {
@@ -123,5 +123,50 @@ namespace CapaPresentacion
                 return new Respuesta<bool> { Estado = false, Valor = "Ocurrió un error: " + ex.Message };
             }
         }
+
+        [WebMethod]
+        public static Respuesta<bool> CambiarClave(int IdUsuario, string claveActual, string claveNueva)
+        {
+            try
+            {
+                var utilidades = Utilidadesj.GetInstance();
+
+                if (IdUsuario <= 0)
+                {
+                    return new Respuesta<bool>() { Estado = false, Valor = "No se encro al Usuario Intente mas tarde" };
+                }
+                var listaUsuarios = NUsuario.GetInstance().ObtenerUsuarios();
+                var item = listaUsuarios.FirstOrDefault(x => x.IdUsuario == IdUsuario);
+
+                if (item == null)
+                {
+                    return new Respuesta<bool>() { Estado = false, Valor = "Usuario no encontrado" };
+                }
+                //string claveDesen = EncryptacionH.Decrypt(item.Clave);
+                // Verificar si la contraseña actual ingresada coincide con la almacenada (después de generar el hash)
+                if (!utilidades.VerificarClave(item.Clave, claveActual)) // Compara el hash
+                {
+                    return new Respuesta<bool>() { Estado = false, Valor = "Contraseña actual incorrecta" };
+                }
+                // Validar que la nueva clave no sea igual a la actual
+                if (claveActual == claveNueva)
+                {
+                    return new Respuesta<bool>() { Estado = false, Valor = "La nueva contraseña no puede ser igual a la actual" };
+                }
+                item.Clave = utilidades.GenerarHashClave(claveNueva);
+                //item.Clave = EncryptacionH.Encrypt(claveNueva);
+                bool resultado = NUsuario.GetInstance().ActualizarUsuario(item);
+                return new Respuesta<bool>
+                {
+                    Estado = resultado,
+                    Valor = resultado ? "Contraseña Actualizada Correctamente" : "Error al actualizar la Contraseña, intente mas tarde"
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Respuesta<bool> { Estado = false, Valor = "Ocurrió un error: " + ex.Message };
+            }
+        }
+        
     }
 }

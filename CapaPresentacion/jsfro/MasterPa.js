@@ -12,12 +12,18 @@ $(document).ready(function () {
 
         // Llamar a obtenerDetalleUsuarioR pasando el IdUsuario
         obtenerDetalleUsuarioR(idUsu);
+
+        // Iniciar el temporizador de inactividad
+        iniciarTemporizadorInactividad();
+
+        // Detectar actividad del usuario para reiniciar el temporizador
+        $(document).on('mousemove keypress click scroll', reiniciarTemporizadorInactividad);
+
     } else {
         // Si no hay sesión, redirigir al login
         window.location.href = 'Login.aspx';
     }
 
-    //obtenerDetalleUsuarioR();
 });
 
 $('#salirsis').on('click', async function (e) {
@@ -31,7 +37,7 @@ async function obtenerDetalleUsuarioR(idUsu) {
         const response = await $.ajax({
             type: "POST",
             url: "Inicio.aspx/ObtenerToken",
-            data: JSON.stringify({ IdUsu: idUsu }), // Puedes dejarlo como JSON vacío
+            data: JSON.stringify({ IdUsu: idUsu }),
             contentType: 'application/json; charset=utf-8',
             dataType: "json"
         });
@@ -57,15 +63,6 @@ async function obtenerDetalleUsuarioR(idUsu) {
                     console.error('No se encontró información del usuario en sessionStorage.');
                     window.location.href = 'Login.aspx'; // Redirigir si no hay usuario válido
                 }
-                //var usuario = JSON.parse(sessionStorage.getItem('usuarioL'));
-                //$("#nomUserg").text(usuario.Apellidos);
-                //$("#imgUsumast").attr("src", usuario.ImageFull);
-
-                //if (usuario.IdRol === 1) {
-                //    $(".adminic").show();
-                //} else {
-                //    $(".adminic").hide();
-                //}
             }
         } else {
             window.location.href = 'Login.aspx';
@@ -95,59 +92,27 @@ async function cerrarSesion() {
     }
 }
 
+// Cierre de sesión por inactividad
+//var tiempoMaximoInactividad = 600000;
+var tiempoMaximoInactividad = 180000; // 3 minutos (180000 ms)
+var temporizadorInactividad;
 
+function iniciarTemporizadorInactividad() {
+    // Iniciar el temporizador de inactividad
+    temporizadorInactividad = setTimeout(cerrarSesionPorInactividad, tiempoMaximoInactividad);
+}
 
-//$(document).ready(function () {
-//    oBtenerDetalleUsuarioR();
-//});
+function reiniciarTemporizadorInactividad() {
+    // Reiniciar el temporizador de inactividad cuando detecta actividad del usuario
+    clearTimeout(temporizadorInactividad);
+    iniciarTemporizadorInactividad();
+}
 
-//function oBtenerDetalleUsuarioR() {
-
-//    $.ajax({
-//        type: "POST",
-//        url: "Inicio.aspx/ObtenerDatos",
-//        data: {},
-//        contentType: 'application/json; charset=utf-8',
-//        dataType: "json",
-//        error: function (xhr, ajaxOptions, thrownError) {
-//            console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
-//        },
-//        success: function (response) {
-
-//            if (response.d.Estado) {
-//                if (sessionStorage.getItem('tokenSesionOrt') !== response.d.Valor) {
-//                    CerrarSesion();
-//                }
-//                //$("#nomUserg").append(response.d.Objeto.Apellidos); salirsis
-//                $("#nomUserg").text(response.d.Data.Apellidos);
-//                $("#imgUsumast").attr("src", response.d.Data.ImageFull);
-//                //$("#rolusuario").html("<i class='fa fa-circle text-success'></i> " + response.d.objeto.oRol.Descripcion);
-//            } else {
-//                window.location.href = 'Login.aspx';
-//            }
-
-//        }
-//    });
-//}
-
-//function CerrarSesion() {
-
-//    $.ajax({
-//        type: "POST",
-//        url: "Inicio.aspx/CerrarSesion",
-//        dataType: "json",
-//        contentType: 'application/json; charset=utf-8',
-//        error: function (xhr, ajaxOptions, thrownError) {
-//            console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
-//        },
-//        success: function (response) {
-//            if (response.d.Estado) {
-//                //sessionStorage.removeItem('usuario');
-//                sessionStorage.clear();
-//                //window.location.href = 'Login.aspx';
-//                // Limpiar el historial antes de redirigir
-//                window.location.replace('Login.aspx');
-//            }
-//        }
-//    });
-//}
+// Función para cerrar sesión debido a la inactividad
+function cerrarSesionPorInactividad() {
+    swal("Mensaje", "Sesión cerrada por inactividad", "warning");
+    // Retraso de 1 segundo antes de cerrar sesión
+    setTimeout(function () {
+        cerrarSesion();  // Llama a cerrarSesion después del retraso
+    }, 1000);
+}

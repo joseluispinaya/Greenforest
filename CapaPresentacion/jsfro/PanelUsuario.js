@@ -174,10 +174,9 @@ function mostrarModal(modelo, cboEstadoDeshabilitado = true) {
     $("#cboEstado").val(modelo.Estado == true ? 1 : 0);
     $("#imgUsuarioM").attr("src", modelo.ImageFull == "" ? "Imagenes/sinimagen.png" : modelo.ImageFull);
 
-    // Configurar el estado de cboEstado según cboEstadoDeshabilitado jquery v 1.11.1
     $("#cboEstado").prop("disabled", cboEstadoDeshabilitado);
-
-    //$("#txtCorreo").prop("disabled", !cboEstadoDeshabilitado);
+    $("#txtClave").prop("disabled", !cboEstadoDeshabilitado); // Deshabilitar clave si es edición
+    //$("#txtClave").prop("disabled", !cboEstadoDeshabilitado);
     $("#txtFoto").val("");
 
     $("#modalData").modal("show");

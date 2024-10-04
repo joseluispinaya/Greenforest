@@ -21,9 +21,11 @@ namespace CapaPresentacion
         {
             try
             {
+                string ClaveEncri = Utilidadesj.GetInstance().GenerarHashClave(Clave);
+                //string ClaveEncri = EncryptacionH.Encrypt(Clave);
                 var tok = string.Empty;
-                var obj = NUsuario.GetInstance().LoginUsuarioWeb(Usuario, Clave);
-
+                var obj = NUsuario.GetInstance().LoginUsuarioWeb(Usuario, ClaveEncri);
+                //var obj = NUsuario.GetInstance().LoginUsuarioWeb(Usuario, Clave);
                 if (obj == null)
                 {
                     return new Respuesta<EUsuario>() { Estado = false };

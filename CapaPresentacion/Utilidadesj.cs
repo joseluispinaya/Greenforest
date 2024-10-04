@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using CapaEntidad;
 using CapaNegocio;
@@ -29,6 +31,32 @@ namespace CapaPresentacion
             return _instancia;
         }
         #endregion
+
+        public string GenerarHashClave(string clave)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                // Convertir la contraseña en un array de bytes y generar el hash
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(clave));
+
+                // Convertir el array de bytes a string (hash en formato hexadecimal)
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2")); // "x2" para formato hexadecimal
+                }
+
+                return builder.ToString(); // Retorna el hash de la contraseña
+            }
+        }
+        public bool VerificarClave(string hashAlmacenado, string claveIngresada)
+        {
+            // Generar el hash de la contraseña ingresada
+            string hashIngresado = GenerarHashClave(claveIngresada);
+
+            // Comparar los hashes
+            return hashAlmacenado == hashIngresado;
+        }
 
         public string UploadPhotoA(MemoryStream stream, string folder)
         {

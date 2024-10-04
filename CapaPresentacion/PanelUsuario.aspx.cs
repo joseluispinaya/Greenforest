@@ -86,6 +86,7 @@ namespace CapaPresentacion
         {
             try
             {
+                var utilidades = Utilidadesj.GetInstance();
                 var imageUrl = string.Empty;
 
                 if (imageBytes != null && imageBytes.Length > 0)
@@ -93,21 +94,19 @@ namespace CapaPresentacion
                     using (var stream = new MemoryStream(imageBytes))
                     {
                         string folder = "/Imagenes/";
-                        imageUrl = Utilidadesj.GetInstance().UploadPhotoA(stream, folder);
-
+                        //imageUrl = Utilidadesj.GetInstance().UploadPhotoA(stream, folder);
+                        imageUrl = utilidades.UploadPhotoA(stream, folder);
                     }
-                    //var stream = new MemoryStream(imageBytes);
-                    //string folder = "/Imagenes/";
-                    //imageUrl = Utilidadesj.GetInstance().UploadPhotoA(stream, folder);
                 }
-                //Ruc = EncryptacionH.Encrypt(oUsuario.Clave),
+                
                 EUsuario obj = new EUsuario
                 {
                     Nombres = oUsuario.Nombres,
                     Apellidos = oUsuario.Apellidos,
                     Correo = oUsuario.Correo,
                     //Clave = oUsuario.Clave,
-                    Clave = EncryptacionH.Encrypt(oUsuario.Clave),
+                    //Clave = EncryptacionH.Encrypt(oUsuario.Clave),
+                    Clave = utilidades.GenerarHashClave(oUsuario.Clave),
                     Foto = imageUrl,
                     IdRol = oUsuario.IdRol,
                     TokenSesion = Guid.NewGuid().ToString()

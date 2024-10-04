@@ -142,5 +142,35 @@ namespace CapaPresentacion
                 return new Respuesta<bool> { Estado = false, Valor = "Ocurrió un error: " + ex.Message };
             }
         }
+
+        [WebMethod]
+        public static Respuesta<bool> ValidarClave(int IdUsuario, string claveActual)
+        {
+            try
+            {
+                var utilidades = Utilidadesj.GetInstance();
+
+                if (IdUsuario <= 0)
+                {
+                    return new Respuesta<bool>() { Estado = false, Valor = "No se encro al Usuario Intente mas tarde" };
+                }
+                var listaUsuarios = NUsuario.GetInstance().ObtenerUsuarios();
+                var item = listaUsuarios.FirstOrDefault(x => x.IdUsuario == IdUsuario);
+
+                if (item == null)
+                {
+                    return new Respuesta<bool>() { Estado = false, Valor = "Usuario No Tiene Nivel de Acceso" };
+                }
+                if (!utilidades.VerificarClave(item.Clave, claveActual))
+                {
+                    return new Respuesta<bool>() { Estado = false, Valor = "Su Contraseña es Incorrecta" };
+                }
+                return new Respuesta<bool>() { Estado = true, Valor = "Nivel de Acceso Aprobado" };
+            }
+            catch (Exception ex)
+            {
+                return new Respuesta<bool> { Estado = false, Valor = "Ocurrió un error: " + ex.Message };
+            }
+        }
     }
 }

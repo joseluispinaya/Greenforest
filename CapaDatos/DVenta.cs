@@ -231,5 +231,89 @@ namespace CapaDatos
 
             return rptListaUsuario;
         }
+
+        public List<EReporteVentaProd> ReportePorProductoN()
+        {
+            List<EReporteVentaProd> rptListaUsuario = new List<EReporteVentaProd>();
+
+            try
+            {
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand comando = new SqlCommand("sp_ObtenerVentasPorProducto", con))
+                    {
+                        comando.CommandType = CommandType.StoredProcedure;
+                        con.Open();
+
+                        using (SqlDataReader dr = comando.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                rptListaUsuario.Add(new EReporteVentaProd()
+                                {
+                                    NombreProducto = dr["Nombre"].ToString(),
+                                    Codigo = dr["Codigo"].ToString(),
+                                    Imagen = dr["Foto"].ToString(),
+                                    Descripcion = dr["Descripcion"].ToString(),
+                                    PrecioUnidadVenta = float.Parse(dr["PrecioUnidadVenta"].ToString()),
+                                    CantidadTotal = Convert.ToInt32(dr["CantidadTotal"]),
+                                    MontoTotal = float.Parse(dr["MontoTotal"].ToString())
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //throw ex;
+                throw new Exception("Error al obtener reporte por producto", ex);
+            }
+
+            return rptListaUsuario;
+        }
+
+        public List<EReporteVentaProd> ReportePorProductoFechas(DateTime FechaInicio, DateTime FechaFin)
+        {
+            List<EReporteVentaProd> rptListaUsuario = new List<EReporteVentaProd>();
+
+            try
+            {
+                using (SqlConnection con = ConexionBD.GetInstance().ConexionDB())
+                {
+                    using (SqlCommand comando = new SqlCommand("sp_ObtenerVentasPorProductoFech", con))
+                    {
+                        comando.Parameters.AddWithValue("@FechaInicio", FechaInicio);
+                        comando.Parameters.AddWithValue("@FechaFin", FechaFin);
+                        comando.CommandType = CommandType.StoredProcedure;
+                        con.Open();
+
+                        using (SqlDataReader dr = comando.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                rptListaUsuario.Add(new EReporteVentaProd()
+                                {
+                                    NombreProducto = dr["Nombre"].ToString(),
+                                    Codigo = dr["Codigo"].ToString(),
+                                    Imagen = dr["Foto"].ToString(),
+                                    Descripcion = dr["Descripcion"].ToString(),
+                                    PrecioUnidadVenta = float.Parse(dr["PrecioUnidadVenta"].ToString()),
+                                    CantidadTotal = Convert.ToInt32(dr["CantidadTotal"]),
+                                    MontoTotal = float.Parse(dr["MontoTotal"].ToString())
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //throw ex;
+                throw new Exception("Error al obtener reporte por producto", ex);
+            }
+
+            return rptListaUsuario;
+        }
     }
 }

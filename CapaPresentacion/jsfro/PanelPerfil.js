@@ -204,7 +204,7 @@ $('#btnGuardarCambiosp').on('click', function () {
 
 })
 
-$('#btnCambiarClave').on('click', function () {
+$('#btnCambiarClave').on('click', async function () { // Cambiar aquí para usar async
 
     const inputs = $("input.input-validar").serializeArray();
     const inputs_sin_valor = inputs.filter((item) => item.value.trim() == "")
@@ -216,35 +216,53 @@ $('#btnCambiarClave').on('click', function () {
         return;
     }
 
-    if ($("#txtClaveNueva").val().trim() != $("#txtConfirmarClave").val().trim()) {
-        toastr.warning("", "Las contraseñas no son iguales")
+    const claveNueva = $("#txtClaveNueva").val().trim();
+    const confirmarClave = $("#txtConfirmarClave").val().trim();
+
+    // Validar que la nueva clave tenga al menos 8 caracteres
+    if (claveNueva.length < 8) {
+        toastr.warning("", "La nueva contraseña debe tener al menos 8 caracteres");
+        return;
+    }
+
+    // Validar que ambas contraseñas sean iguales
+    if (claveNueva != confirmarClave) {
+        toastr.warning("", "Las contraseñas no son iguales");
         return;
     }
 
     var request = {
         IdUsuario: parseInt($("#txtIdUsuarioP").val()),
         claveActual: $("#txtClaveActual").val().trim(),
-        claveNueva: $("#txtClaveNueva").val().trim()
+        claveNueva: claveNueva
     }
 
     $.ajax({
         type: "POST",
         url: "PanelPerfil.aspx/CambiarClave",
         data: JSON.stringify(request),
-        dataType: "json",
         contentType: 'application/json; charset=utf-8',
-        error: function (xhr, ajaxOptions, thrownError) {
-            console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+        dataType: "json",
+        beforeSend: function () {
+            $("#loadis").LoadingOverlay("show");
         },
-        success: function (response) {
-            if (response.d) {
-                swal("Mensaje", "Los cambios fueron guardados.", "success")
-                CerrarSesion();
+        success: async function (response) {  // Aquí añadimos async para usar await
+            $("#loadis").LoadingOverlay("hide");
+            if (response.d.Estado) {
+                swal("Mensaje", response.d.Valor, "success");
+                // Retraso de 2 segundos antes de cerrar sesión
+                setTimeout(async function () {
+                    await cerrarSesion();  // Llama a cerrarSesion después del retraso
+                }, 2000);  // Retraso de 2000 ms (2 segundos)
+                //await cerrarSesion();
+
             } else {
-                swal("Mensaje", "Lo sentimos intente mas tarde", "warning")
+                swal("Mensaje", response.d.Valor, "warning");
             }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            $("#loadis").LoadingOverlay("hide");
+            console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
         }
     });
-    //claveRegDataAjax();
-
-})
+});

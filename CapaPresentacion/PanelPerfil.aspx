@@ -69,7 +69,7 @@
             <div class="card-header py-3 bg-second-primary">
                 <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-key"></i> Cambiar Contraseña</h6>
             </div>
-            <div class="card-body">
+            <div class="card-body" id="loadis">
                 <div class="form-row">
                     <div class="form-group col-sm-12">
                         <label for="txtClaveActual">Contraseña Actual</label>
