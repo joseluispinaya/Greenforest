@@ -73,9 +73,9 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Total de Categorias
+                                Total de Clientes
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="totalCategorias">18</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="totalClientes">18</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-tags fa-2x text-gray-300"></i>
@@ -85,6 +85,40 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 bg-second-primary">
+                <h6 class="m-0 font-weight-bold text-white">Ventas de los ultimas Semanas</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-area" style="height: 350px !important;">
+                    <canvas id="barVentas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie Chart - Productos más vendidos-->
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 bg-second-primary">
+                <h6 class="m-0 font-weight-bold text-white">Productos más vendidos</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="chart-pie" style="height: 350px !important ;">
+                    <canvas id="pieProductos"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="jsfro/InicioD.js" type="text/javascript"></script>
 </asp:Content>

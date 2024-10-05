@@ -24,7 +24,7 @@
                         class="fas fa-search"></i> Buscar</button>
             </div>
             <div class="form-group col-sm-3">
-                <button class="btn btn-info btn-block btn-sm" type="button" id="btnImprimir"><i
+                <button class="btn btn-info btn-block btn-sm" type="button" id="btnImprimirP"><i
                         class="fas fa-print"></i> Reporte</button>
             </div>
         </div>

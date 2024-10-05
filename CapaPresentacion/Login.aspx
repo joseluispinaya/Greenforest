@@ -46,10 +46,10 @@
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="txtcorreo" placeholder="Correo">
+                                            <input type="email" class="form-control form-control-user" id="txtcorreo" placeholder="Correo" value="luisp@yopmail.com">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="txtpassword" placeholder="Contraseña">
+                                            <input type="password" class="form-control form-control-user" id="txtpassword" placeholder="Contraseña" value="Jose1989">
                                         </div>
                                         <%--<div class="form-group">
                                             <div class="custom-control custom-checkbox small">

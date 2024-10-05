@@ -32,6 +32,12 @@ namespace CapaPresentacion
         }
         #endregion
 
+        public string GenerarClaveOpcion()
+        {
+            string clave = Guid.NewGuid().ToString("N").Substring(0, 6);
+            return clave;
+        }
+
         public string GenerarHashClave(string clave)
         {
             using (SHA256 sha256Hash = SHA256.Create())
@@ -186,7 +192,7 @@ namespace CapaPresentacion
                 cuerposss = cuerposss.Replace("[URL_IMAGEN]", "https://asociacion-001-site1.ktempurl.com/imagenes/ortiimss.png")
                      .Replace("[USUARIO]", toEmail)
                      .Replace("[CONTRASEÑA]", clave)
-                     .Replace("[URL_PAGINA]", "https://www.facebook.com/joseluis.pinayabalderrama");
+                     .Replace("[URL_PAGINA]", "https://greenforest-001-site1.dtempurl.com/");
 
                 correo.Body = cuerposss;
                 correo.IsBodyHtml = true;

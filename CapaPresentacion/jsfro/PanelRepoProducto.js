@@ -134,3 +134,10 @@ $('#btnBuscar').on('click', function () {
     //swal("Mensaje", "Falta Implementar Este boton", "warning");
 
 })
+
+$('#btnImprimirP').on('click', function () {
+    var fechaIni = $("#txtFechaInicio").val();
+    var fechaFin = $("#txtFechaFin").val();
+    var url = 'DocReporteProduVenta.aspx?fi=' + encodeURIComponent(fechaIni) + '&ff=' + encodeURIComponent(fechaFin);
+    window.open(url, '', 'height=600,width=800,scrollbars=0,location=1,toolbar=0');
+})

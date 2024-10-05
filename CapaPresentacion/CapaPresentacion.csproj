@@ -104,6 +104,7 @@
     <Content Include="css\sb-admin-2.css" />
     <Content Include="css\sb-admin-2.min.css" />
     <Content Include="Default.aspx" />
+    <Content Include="DocReporteProduVenta.aspx" />
     <Content Include="frmDocVenta.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Imagenes\sinimagen.png" />
@@ -118,7 +119,9 @@
     <Content Include="img\undraw_profile_3.svg" />
     <Content Include="img\undraw_rocket.svg" />
     <Content Include="Inicio.aspx" />
+    <Content Include="jsfro\DocReporteProduVenta.js" />
     <Content Include="jsfro\frmDocVenta.js" />
+    <Content Include="jsfro\InicioD.js" />
     <Content Include="jsfro\Login.js" />
     <Content Include="jsfro\MasterPa.js" />
     <Content Include="jsfro\PanelCliente.js" />
@@ -1851,6 +1854,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DocReporteProduVenta.aspx.cs">
+      <DependentUpon>DocReporteProduVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DocReporteProduVenta.aspx.designer.cs">
+      <DependentUpon>DocReporteProduVenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmDocVenta.aspx.cs">
       <DependentUpon>frmDocVenta.aspx</DependentUpon>

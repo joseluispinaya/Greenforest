@@ -1,5 +1,48 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PaginaMa.Master" AutoEventWireup="true" CodeBehind="PanelPerfil.aspx.cs" Inherits="CapaPresentacion.PanelPerfil" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .box {
+            position: relative;
+            width: 100%; /* Ajusta el ancho al contenedor */
+            height: 50px;
+        }
+
+            .box h2 {
+                position: absolute;
+                margin-bottom: 10px;
+                top: -30px;
+                font-size: 1em;
+                color: #fff;
+                font-weight: 500;
+            }
+
+            .box input {
+                position: absolute;
+                /*width: 100%;*/
+                inset: 2px;
+                z-index: 10;
+                font-size: 1em;
+                border: none;
+                outline: none;
+                padding: 10px 15px;
+                background: #333;
+                color: #fff;
+            }
+
+            .box .password-strength {
+                position: absolute;
+                inset: 0;
+                background: #1115;
+            }
+
+                .box .password-strength:nth-child(3) {
+                    filter: blur(5px);
+                }
+
+                .box .password-strength:nth-child(4) {
+                    filter: blur(10px);
+                }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
 
@@ -64,34 +107,41 @@
         </div>
 
     </div>
+
     <div class="col-sm-4">
         <div class="card shadow mb-4">
             <div class="card-header py-3 bg-second-primary">
                 <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-key"></i> Cambiar Contraseña</h6>
             </div>
-            <div class="card-body" id="loadis">
+
+            <div class="card-body" id="loadis" style="background-color: #333;">
+                <br />
                 <div class="form-row">
                     <div class="form-group col-sm-12">
-                        <label for="txtClaveActual">Contraseña Actual</label>
+                        <div class="box">
+                            <h2>Nueva Contraseña <span id="texto">-</span></h2>
+                            <input type="password" id="txtClaveNueva" class="input-validar" placeholder="Clave Nueva" name="Clave Nueva">
+                            <div class="password-strength"></div>
+                            <div class="password-strength"></div>
+                            <div class="password-strength"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm-12">
+                        <label for="txtConfirmarClave" style="color: #fff;">Confirmar Contraseña</label>
                         <input type="password" class="form-control form-control-sm input-validar"
-                            id="txtClaveActual" name="Clave Actual">
+                            id="txtConfirmarClave" name="Confirmar Clave" style="background-color: #333; color: #fff;">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-sm-12">
-                        <label for="txtClaveNueva">Nueva Contraseña</label>
-                        <input type="password" class="form-control form-control-sm input-validar" id="txtClaveNueva"
-                            name="Clave Nueva">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-sm-12">
-                        <label for="txtConfirmarClave">Confirmar Contraseña</label>
+                        <label for="txtClaveActual" style="color: #fff;">Contraseña Actual</label>
                         <input type="password" class="form-control form-control-sm input-validar"
-                            id="txtConfirmarClave" name="Confirmar Clave">
+                            id="txtClaveActual" name="Clave Actual" style="background-color: #333; color: #fff;">
                     </div>
                 </div>
-                <hr>
                 <div class="row">
                     <div class="col-sm-12">
                         <button type="button" class="btn btn-success btn-sm btn-block" id="btnCambiarClave">Guardar
@@ -99,9 +149,11 @@
                     </div>
                 </div>
             </div>
+          
         </div>
     </div>
 </div>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
     <script src="jsfro/PanelPerfil.js" type="text/javascript"></script>

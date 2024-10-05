@@ -83,6 +83,10 @@ namespace CapaPresentacion
         {
             try
             {
+                var utilidades = Utilidadesj.GetInstance();
+                string clavegenerada = utilidades.GenerarClaveOpcion();
+                string ClaveEncri = utilidades.GenerarHashClave(clavegenerada);
+
                 List<EUsuario> Lista = NUsuario.GetInstance().ObtenerUsuarios();
                 var item = Lista.FirstOrDefault(x => x.Correo == correo);
                 if (item == null)
@@ -93,13 +97,27 @@ namespace CapaPresentacion
                         Valor = "El correo ingresado no existe"
                     };
                 }
+                item.Clave = ClaveEncri;
+                bool resultado = NUsuario.GetInstance().ActualizarUsuario(item);
+                if (resultado)
+                {
+                    bool enviocorreo = EnvioRecuperacion(item.Correo, clavegenerada);
+                    if (!enviocorreo)
+                    {
+                        return new Respuesta<bool>()
+                        {
+                            Estado = false,
+                            Valor = "Ocurrio un problema al enviar el correo."
+                        };
+                    }
+                }
 
-                bool enviocorr = EnvioRecuperacion(item.Correo, item.Clave);
+                //bool enviocorr = EnvioRecuperacion(item.Correo, item.Clave);
 
                 return new Respuesta<bool>()
                 {
-                    Estado = enviocorr,
-                    Valor = enviocorr ? "Se envio un Correo de recuperacion" : "Ocurrio un error en el envio intente mas tarde"
+                    Estado = resultado,
+                    Valor = resultado ? "Se envio un Correo de recuperacion" : "Ocurrio un error en el envio intente mas tarde"
                 };
             }
             catch (Exception)

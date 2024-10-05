@@ -1,8 +1,71 @@
 ﻿
+
+let opcion = false; // Variable global para validar la fortaleza
+
 $(document).ready(function () {
     $.LoadingOverlay("show");
     obtenerDatosUsua();
-})
+
+    // Validación de la fuerza de la contraseña
+    let passwordInput = document.getElementById('txtClaveNueva');
+    let passwordStrengths = document.querySelectorAll('.password-strength');
+    let text = document.getElementById('texto');
+
+    passwordInput.addEventListener('input', function (event) {
+        let password = event.target.value;
+
+        // Criterios para validar la contraseña
+        let hasNumber = /\d/.test(password);                  // Verifica si contiene al menos un número
+        let hasUppercase = /[A-ZÑÁÉÍÓÚ]/.test(password);      // Incluye A-Z, Ñ y letras acentuadas
+        let lengthValid = password.length >= 4;               // Longitud mínima de 4 caracteres
+
+        let strength = 0;
+
+        if (lengthValid) {
+            strength += 1;  // Aumenta la fuerza si la longitud es válida
+        }
+
+        if (hasNumber && password.length >= 6) {
+            strength += 1;  // Aumenta la fuerza si tiene un número y longitud >= 6
+        }
+
+        if (hasUppercase && password.length > 6) {
+            strength += 1;  // Aumenta la fuerza si tiene una mayúscula (incluyendo Ñ o acentos) y longitud > 6
+        }
+
+        // Ajustar color y texto según la fuerza de la contraseña
+        let degree = strength * 120;  // Cada nivel de fuerza tiene 60 grados en el gradiente
+        let gradientColor;
+        let strengthText;
+
+        if (strength === 0) {
+            gradientColor = '#ff2c1c';
+            strengthText = 'Muy débil';
+            opcion = false; // Contraseña no válida
+        } else if (strength === 1) {
+            gradientColor = '#ff2c1c';
+            strengthText = 'Débil';
+            opcion = false; // Contraseña no válida
+        } else if (strength === 2) {
+            gradientColor = '#ff9800';
+            strengthText = 'Medio';
+            opcion = true; // Contraseña válida (medio)
+        } else if (strength === 3) {
+            gradientColor = '#12ff12';
+            strengthText = 'Fuerte';
+            opcion = true; // Contraseña válida (fuerte)
+        }
+
+        // Aplicar el gradiente y el texto de fuerza
+        passwordStrengths.forEach(passwordStrength => {
+            passwordStrength.style.background =
+                `conic-gradient(${gradientColor} ${degree}deg, #1115 ${degree}deg)`;
+        });
+
+        text.textContent = strengthText;
+        text.style.color = gradientColor;
+    });
+});
 function obtenerDatosUsua() {
 
     var usuario = JSON.parse(sessionStorage.getItem('usuarioL'));
@@ -220,8 +283,15 @@ $('#btnCambiarClave').on('click', async function () { // Cambiar aquí para usar
     const confirmarClave = $("#txtConfirmarClave").val().trim();
 
     // Validar que la nueva clave tenga al menos 8 caracteres
-    if (claveNueva.length < 8) {
-        toastr.warning("", "La nueva contraseña debe tener al menos 8 caracteres");
+    //if (claveNueva.length < 8) {
+    //    toastr.warning("", "La nueva contraseña debe tener al menos 8 caracteres");
+    //    return;
+    //}
+
+    // Validar la fortaleza de la contraseña usando la variable global 'opcion'
+    if (opcion === false) {
+        swal("Mensaje", "La nueva contraseña no cumple con los requisitos mínimos de seguridad", "warning");
+        //toastr.warning("", "La nueva contraseña no cumple con los requisitos mínimos de seguridad");
         return;
     }
 
