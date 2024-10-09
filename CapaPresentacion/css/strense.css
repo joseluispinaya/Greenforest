@@ -1,0 +1,184 @@
+﻿
+.containerz {
+    position: relative;
+    /* width: 400px; */
+    width: 100%;
+    padding: 10px;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* border: 1px solid #111; */
+    /* gap: 10px; */
+    padding-bottom: 10px;
+    /* -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0005); */
+}
+
+    .containerz h2 {
+        color: #fff;
+        font-size: 1em;
+        font-weight: 500;
+    }
+
+    .containerz .inputBox {
+        position: relative;
+        width: 100%;
+    }
+
+        .containerz .inputBox input {
+            position: relative;
+            width: 100%;
+            background: #222;
+            border: none;
+            outline: none;
+            padding: 10px;
+            color: #fff;
+            font-size: 1em;
+        }
+
+    .containerz .strengthMeter {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #222;
+    }
+
+        .containerz .strengthMeter::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 100%;
+            transition: 0.5s;
+        }
+
+    .containerz.weak .strengthMeter::before {
+        width: 10%;
+        background: #f00;
+        filter: drop-shadow(0 0 3px #f00) drop-shadow(0 0 6px #f00) drop-shadow(0 0 10px #f00);
+    }
+
+    .containerz.medium .strengthMeter::before {
+        width: 66.66%;
+        background: #ffa500;
+        filter: drop-shadow(0 0 3px #ffa500) drop-shadow(0 0 6px #ffa500) drop-shadow(0 0 10px #ffa500);
+    }
+
+    .containerz.strong .strengthMeter::before {
+        width: 100%;
+        background: #0f0;
+        filter: drop-shadow(0 0 3px #0f0) drop-shadow(0 0 6px #0f0) drop-shadow(0 0 10px #0f0);
+    }
+
+/* .containerz .strengthMeter::after {
+    position: absolute;
+    top: -45px;
+    left: 30px;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.containerz.weak .strengthMeter::after {
+    content: 'tu contraseña es débil';
+    color: #f00;
+    filter: drop-shadow(0 0 5px #f00);
+}
+
+.containerz.medium .strengthMeter::after {
+    content: 'tu contraseña es medio fuerte';
+    color: #ffa500;
+    filter: drop-shadow(0 0 5px #ffa500);
+}
+
+.containerz.strong .strengthMeter::after {
+    content: 'tu contraseña es fuerte';
+    color: #0f0;
+    filter: drop-shadow(0 0 5px #0f0);
+} */
+
+.shown {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 100%;
+    background: #333;
+    border: 6px solid #222;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .shown::before {
+        content: 'Show';
+        font-size: 0.6em;
+        color: #fff;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+    }
+
+    .shown.hide::before {
+        content: 'Hide';
+    }
+
+
+.containerzz {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* padding-bottom: 10px; */
+}
+
+    .containerzz h2 {
+        color: #fff;
+        font-size: 1em;
+        font-weight: 500;
+    }
+
+    .containerzz .inputBoxz {
+        position: relative;
+        width: 100%;
+    }
+
+        .containerzz .inputBoxz input {
+            position: relative;
+            width: 100%;
+            background: #222;
+            border: none;
+            outline: none;
+            padding: 10px;
+            color: #fff;
+            font-size: 1em;
+        }
+
+.showz {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 100%;
+    background: #333;
+    border: 6px solid #222;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .showz::before {
+        content: 'Show';
+        font-size: 0.6em;
+        color: #fff;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+    }
+
+    .showz.hide::before {
+        content: 'Hide';
+    }

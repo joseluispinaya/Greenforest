@@ -90,7 +90,7 @@
                         </div>
                         <div class="input-group input-group-sm mb-3">
                             <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupTotal">Total Venta</span>
+                              <span class="input-group-text" id="inputGroupTotal">Total Venta USD</span>
                             </div>
                             <input type="text" class="form-control text-center" aria-label="Small" aria-describedby="inputGroupTotal" id="txtTotal" disabled>
                         </div>

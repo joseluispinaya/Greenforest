@@ -6,113 +6,64 @@ $(document).ready(function () {
     $.LoadingOverlay("show");
     obtenerDatosUsua();
 
-    // Función para evaluar la fortaleza de la contraseña
-    function strength(password) {
-        let i = 0;
+    // Validación de la fuerza de la contraseña
+    let passwordInput = document.getElementById('txtClaveNueva');
+    let passwordStrengths = document.querySelectorAll('.password-strength');
+    let text = document.getElementById('texto');
 
-        if (password.length > 6) {
-            i++;
+    passwordInput.addEventListener('input', function (event) {
+        let password = event.target.value;
+
+        // Criterios para validar la contraseña
+        let hasNumber = /\d/.test(password);                  // Verifica si contiene al menos un número
+        let hasUppercase = /[A-ZÑÁÉÍÓÚ]/.test(password);      // Incluye A-Z, Ñ y letras acentuadas
+        let lengthValid = password.length >= 4;               // Longitud mínima de 4 caracteres
+
+        let strength = 0;
+
+        if (lengthValid) {
+            strength += 1;  // Aumenta la fuerza si la longitud es válida
         }
 
-        if (password.length >= 10) {
-            i++;
+        if (hasNumber && password.length >= 6) {
+            strength += 1;  // Aumenta la fuerza si tiene un número y longitud >= 6
         }
 
-        if (/[A-Z]/.test(password)) {
-            i++;
+        if (hasUppercase && password.length > 6) {
+            strength += 1;  // Aumenta la fuerza si tiene una mayúscula (incluyendo Ñ o acentos) y longitud > 6
         }
 
-        if (/[0-9]/.test(password)) {
-            i++;
-        }
-
-        if (/[A-Za-z0-8]/.test(password)) {
-            i++;
-        }
-
-        return i;
-    }
-    // Evento keyup para monitorear los cambios en el campo de contraseña
-    $('#txtClaveNueva').on('keyup', function () {
-        let password = $(this).val();
-        let strengthValue = strength(password);
-        let container = $('.containerz');
-
+        // Ajustar color y texto según la fuerza de la contraseña
+        let degree = strength * 120;  // Cada nivel de fuerza tiene 60 grados en el gradiente
         let gradientColor;
         let strengthText;
-        let text = document.getElementById('texto');
 
-        // Evaluar la fortaleza de la contraseña y actualizar las clases
-        if (strengthValue <= 2) {
-            container.addClass('weak');
-            container.removeClass('medium');
-            container.removeClass('strong');
-            gradientColor = '#f00';
+        if (strength === 0) {
+            gradientColor = '#ff2c1c';
             strengthText = 'Muy débil';
-            opcion = false;
-        } else if (strengthValue >= 2 && strengthValue <= 4) {
-            container.removeClass('weak');
-            container.addClass('medium');
-            container.removeClass('strong');
-            gradientColor = '#ffa500';
+            opcion = false; // Contraseña no válida
+        } else if (strength === 1) {
+            gradientColor = '#ff2c1c';
+            strengthText = 'Débil';
+            opcion = false; // Contraseña no válida
+        } else if (strength === 2) {
+            gradientColor = '#ff9800';
             strengthText = 'Medio';
-            opcion = true;
-        } else {
-            container.removeClass('weak');
-            container.removeClass('medium');
-            container.addClass('strong');
-            gradientColor = '#0f0';
+            opcion = true; // Contraseña válida (medio)
+        } else if (strength === 3) {
+            gradientColor = '#12ff12';
             strengthText = 'Fuerte';
-            opcion = true;
+            opcion = true; // Contraseña válida (fuerte)
         }
+
+        // Aplicar el gradiente y el texto de fuerza
+        passwordStrengths.forEach(passwordStrength => {
+            passwordStrength.style.background =
+                `conic-gradient(${gradientColor} ${degree}deg, #1115 ${degree}deg)`;
+        });
+
         text.textContent = strengthText;
         text.style.color = gradientColor;
-    });
-
-
-    // Seleccionar el campo de contraseña y el botón de mostrar/ocultar
-    let pswrd = $('#txtClaveNueva');
-    let show = $('.shown');
-
-    // Añadir evento al hacer clic en el botón de mostrar/ocultar
-    show.on('click', function () {
-        if (pswrd.attr('type') === 'password') {
-            pswrd.attr('type', 'text');  // Cambiar a texto
-            show.addClass('hide');       // Añadir clase 'hide' para cambiar el contenido del botón
-        } else {
-            pswrd.attr('type', 'password');  // Volver a contraseña
-            show.removeClass('hide');        // Remover la clase 'hide' para restaurar el contenido del botón
-        }
-    });
-
-    // Campo de "Contraseña Actual" y su botón de mostrar/ocultar
-    let pswrdActual = $('#txtClaveActual');
-    let showActual = $('#showClaveActual');
-
-    // Evento para mostrar/ocultar "Contraseña Actual"
-    showActual.on('click', function () {
-        if (pswrdActual.attr('type') === 'password') {
-            pswrdActual.attr('type', 'text');
-            showActual.addClass('hide');
-        } else {
-            pswrdActual.attr('type', 'password');
-            showActual.removeClass('hide');
-        }
-    });
-
-    // Campo de "Confirmar Contraseña" y su botón de mostrar/ocultar
-    let pswrdConfirmar = $('#txtConfirmarClave');
-    let showConfirmar = $('#showConfirmarClave');
-
-    // Evento para mostrar/ocultar "Confirmar Contraseña"
-    showConfirmar.on('click', function () {
-        if (pswrdConfirmar.attr('type') === 'password') {
-            pswrdConfirmar.attr('type', 'text');
-            showConfirmar.addClass('hide');
-        } else {
-            pswrdConfirmar.attr('type', 'password');
-            showConfirmar.removeClass('hide');
-        }
     });
 });
 function obtenerDatosUsua() {
@@ -310,7 +261,7 @@ $('#btnGuardarCambiosp').on('click', function () {
                 // Si el usuario cancela, vuelve a habilitar el botón
                 $('#btnGuardarCambiosp').prop('disabled', false);
             }
-            
+
         });
 
 

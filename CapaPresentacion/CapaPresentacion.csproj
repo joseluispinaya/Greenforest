@@ -103,6 +103,7 @@
     <Content Include="css\progres.css" />
     <Content Include="css\sb-admin-2.css" />
     <Content Include="css\sb-admin-2.min.css" />
+    <Content Include="css\strense.css" />
     <Content Include="Default.aspx" />
     <Content Include="DocReporteProduVenta.aspx" />
     <Content Include="frmDocVenta.aspx" />
@@ -126,6 +127,7 @@
     <Content Include="jsfro\MasterPa.js" />
     <Content Include="jsfro\PanelCliente.js" />
     <Content Include="jsfro\PanelPerfil.js" />
+    <Content Include="jsfro\PanelPerfilOri.js" />
     <Content Include="jsfro\PanelProducto.js" />
     <Content Include="jsfro\PanelProveedor.js" />
     <Content Include="jsfro\PanelRepoProducto.js" />

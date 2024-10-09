@@ -93,7 +93,7 @@ async function cerrarSesion() {
 }
 
 // Cierre de sesión por inactividad
-//var tiempoMaximoInactividad = 600000;
+//var tiempoMaximoInactividad = 600000; 180000
 var tiempoMaximoInactividad = 180000; // 3 minutos (180000 ms)
 var temporizadorInactividad;
 

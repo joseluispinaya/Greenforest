@@ -46,15 +46,15 @@
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="txtcorreo" placeholder="Correo" value="luisp@yopmail.com">
+                                            <input type="email" class="form-control form-control-user" id="txtcorreo" placeholder="Correo">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="txtpassword" placeholder="Contraseña" value="Jose1989">
+                                            <input type="password" class="form-control form-control-user" id="txtpassword" placeholder="Contraseña">
                                         </div>
                                         <%--<div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="chkMantenerSesion">
-                                                <label class="custom-control-label" for="chkMantenerSesion">Mantener Sesión</label>
+                                                <label class="custom-control-label" for="chkMantenerSesion">Pinaya1989 luisp@yopmail.com</label>
                                             </div>
                                         </div>--%>
 

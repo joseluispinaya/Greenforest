@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PaginaMa.Master" AutoEventWireup="true" CodeBehind="PanelPerfil.aspx.cs" Inherits="CapaPresentacion.PanelPerfil" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="css/strense.css" rel="stylesheet">
     <style>
         .box {
             position: relative;
@@ -108,7 +109,60 @@
 
     </div>
 
-    <div class="col-sm-4">
+        <div class="col-sm-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 bg-second-primary">
+                    <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-key"></i> Cambiar
+                Contraseña</h6>
+                </div>
+                <div class="card-body" style="background-color: #333;">
+                    <div class="form-row">
+                        <div class="form-group col-sm-12">
+                            <div class="containerz">
+                                <h2>Nueva Contraseña <span id="texto">-</span></h2>
+                                <div class="inputBox">
+                                    <input type="password" id="txtClaveNueva" class="input-validar" placeholder="Clave Nueva" name="Clave Nueva">
+                                    <div class="shown"></div>
+                                </div>
+
+                                <div class="strengthMeter"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-12">
+                            <div class="containerzz">
+                                <h2>Confirmar Contraseña</h2>
+                                <div class="inputBoxz">
+                                    <input type="password" id="txtConfirmarClave" class="input-validar" placeholder="Confirmar Clave" name="Confirmar Clave">
+                                    <div class="showz" id="showConfirmarClave"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-12">
+                            <div class="containerzz">
+                                <h2>Contraseña Actual</h2>
+                                <div class="inputBoxz">
+                                    <input type="password" id="txtClaveActual" class="input-validar" placeholder="Clave Actual" name="Clave Actual">
+                                    <div class="showz" id="showClaveActual"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-success btn-sm btn-block"
+                                id="btnCambiarClave">
+                                Guardar
+                        Cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<%--    <div class="col-sm-4">
         <div class="card shadow mb-4">
             <div class="card-header py-3 bg-second-primary">
                 <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-key"></i> Cambiar Contraseña</h6>
@@ -151,7 +205,7 @@
             </div>
           
         </div>
-    </div>
+    </div>--%>
 </div>
 
 </asp:Content>
