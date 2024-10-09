@@ -12,6 +12,7 @@ const MODELO_BASE = {
 $(document).ready(function () {
     
     //dtClen();
+    apagarApiValor();
 
 });
 function dtClen() {
@@ -483,39 +484,73 @@ $('#btnListarEncrip').on('click', function () {
 
 })
 
+//pruebas apagado api
+function apagarApiValor() {
+    $.ajax({
+        type: "POST",
+        url: "PanelCliente.aspx/ApagarApiobt",
+        data: {},
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+        },
+        success: function (data) {
+            $('#switcher').prop('checked', data.d.Estado);
+        }
+    });
+}
+
+function apagarApi($valor) {
+    var request = {
+        Vale: $valor
+    };
+    $.ajax({
+        type: "POST",
+        url: "PanelCliente.aspx/ApagarApi",
+        data: JSON.stringify(request),
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+        },
+        success: function (data) {
+            if (data.d.Estado) {
+                $("#modalApio").modal("hide");
+                swal("Mensaje", "Se Realizo la accion", "success")
+            }
+
+        }
+    });
+}
+
+//let opciona = false;
+
+$("#switcher").change(function () {
+    // Verificar si el checkbox está marcado
+    if ($(this).is(":checked")) {
+        //swal("Con Cliente", "Se Registro de manera correcta con Id", "warning")
+        apagarApi(true);
+        //$("#cboBuscarCliente").prop("disabled", true);
+
+
+    } else {
+        //swal("Sin ID Cliente", "Se Registro de manera correcta sin Id", "success")
+        apagarApi(false);
+        //$("#cboBuscarCliente").prop("disabled", false);
+
+    }
+});
+
+
 $('#btnDetallee').on('click', function () {
+    $("#modalApio").modal("show");
+    //swal("Mensaje", "Falta Implementar Este boton", "warning");
 
+})
+
+$('#btnInterr').on('click', function () {
+    //$("#modalApio").modal("show");
     swal("Mensaje", "Falta Implementar Este boton", "warning");
-
-    //var progress2 = new LoadingOverlayProgress({
-    //    bar: {
-    //        "background": "#dd0000",
-    //        "top": "50px",
-    //        "height": "30px",
-    //        "border-radius": "15px"
-    //    },
-    //    text: {
-    //        "color": "#aa0000",
-    //        "font-family": "monospace",
-    //        "top": "25px"
-    //    }
-    //});
-    //$.LoadingOverlay("show", {
-    //    custom: progress2.Init("Desencriptando...")
-    //});
-    
-    //var count2 = 0;
-    //var iId2 = setInterval(function () {
-    //    if (count2 >= 100) {
-    //        clearInterval(iId2);
-    //        delete progress2;
-    //        $.LoadingOverlay("hide");
-            
-    //        dtClen(); 
-    //        return;
-    //    }
-    //    count2++;
-    //    progress2.Update(count2);
-    //}, 50);
 
 })

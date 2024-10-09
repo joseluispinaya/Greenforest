@@ -16,7 +16,26 @@ namespace CapaPresentacion
         {
 
         }
+        [WebMethod]
+        public static Respuesta<bool> ApagarApi(bool Vale)
+        {
+            //Configuracion.Ousuario = null;
+            AjusteApi.Vale = Vale;
 
+            return new Respuesta<bool>() { Estado = true };
+
+        }
+
+        [WebMethod]
+        public static Respuesta<bool> ApagarApiobt()
+        {
+            //Configuracion.Ousuario = null;
+            //AjusteApi.Vale = Vale;
+            bool re = AjusteApi.Vale;
+
+            return new Respuesta<bool>() { Estado = re };
+
+        }
         [WebMethod]
         public static Respuesta<List<ECliente>> Obtener()
         {
@@ -62,6 +81,12 @@ namespace CapaPresentacion
         {
             try
             {
+                bool re = AjusteApi.Vale;
+
+                if (!re)
+                {
+                    return new Respuesta<bool> { Estado = false, Valor = "El servidor esta Apagado" };
+                }
                 if (!ValidarRuc(oCliente.Ruc))
                 {
                     return new Respuesta<bool> { Estado = false, Valor = "Ya existe el RUC" };
